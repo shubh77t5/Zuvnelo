@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zuvnelo - Media Downloader</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #0b0b0f;
+      color: white;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      padding: 25px 18px;
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
+      margin-top: 35px;
+    }
+
+    .tagline {
+      text-align: center;
+      color: #999;
+      margin-top: 10px;
+      font-size: 15px;
+    }
+
+    .card {
+      margin-top: 35px;
+      background: #15151c;
+      border: 1px solid #292934;
+      border-radius: 20px;
+      padding: 22px;
+    }
+
+    .card h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 21px;
+    }
+
+    input {
+      width: 100%;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid #343440;
+      background: #0e0e13;
+      color: white;
+      outline: none;
+      font-size: 15px;
+    }
+
+    input:focus {
+      border-color: #7c5cff;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 14px;
+      padding: 16px;
+      border: none;
+      border-radius: 12px;
+      background: #7c5cff;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    #message {
+      text-align: center;
+      margin-top: 18px;
+      color: #aaa;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .feature {
+      background: #15151c;
+      border: 1px solid #292934;
+      border-radius: 15px;
+      padding: 18px 10px;
+      text-align: center;
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    .icon {
+      font-size: 25px;
+      margin-bottom: 8px;
+    }
+
+    .notice {
+      margin-top: 25px;
+      color: #777;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 35px;
+      color: #555;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="logo">Zuvnelo</div>
+
+    <div class="tagline">
+      Simple & fast media tools
+    </div>
+
+    <div class="card">
+
+      <h2>Download Media</h2>
+
+      <input
+        type="url"
+        id="mediaUrl"
+        placeholder="Paste Instagram or YouTube link..."
+      >
+
+      <button onclick="processLink()">
+        Download
+      </button>
+
+      <div id="message">
+        Paste an authorized media link to continue.
+      </div>
+
+    </div>
+
+    <div class="features">
+
+      <div class="feature">
+        <div class="icon">⚡</div>
+        Fast
+      </div>
+
+      <div class="feature">
+        <div class="icon">📱</div>
+        Mobile Friendly
+      </div>
+
+      <div class="feature">
+        <div class="icon">🔗</div>
+        Easy to Use
+      </div>
+
+      <div class="feature">
+        <div class="icon">🛡️</div>
+        Safe & Simple
+      </div>
+
+    </div>
+
+    <div class="notice">
+      Only download content you own or have permission to use.
+    </div>
+
+    <footer>
+      © 2026 Zuvnelo
+    </footer>
+
+  </div>
+
+  <script>
+    function processLink() {
+
+      const url = document.getElementById("mediaUrl").value.trim();
+      const message = document.getElementById("message");
+
+      if (!url) {
+        message.innerText = "Please paste a media link first.";
+        return;
+      }
+
+      if (
+        !url.includes("instagram.com") &&
+        !url.includes("youtube.com") &&
+        !url.includes("youtu.be")
+      ) {
+        message.innerText = "Please enter a supported Instagram or YouTube link.";
+        return;
+      }
+
+      message.innerText =
+        "Link received. Authorized download processing will be connected here.";
+    }
+  </script>
+
+</body>
+</html>
