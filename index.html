@@ -1,227 +1,638 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zuvnelo - Media Downloader</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
+<title>Zuvnelo — Media Tools</title>
+
+<meta name="description"
+content="Zuvnelo is a simple and fast media tool for authorized content.">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:#07070b;
+    color:#fff;
+    min-height:100vh;
+}
+
+/* Background */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:rgba(124,92,255,.12);
+    filter:blur(120px);
+    top:-200px;
+    left:-150px;
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:450px;
+    height:450px;
+    background:rgba(0,210,255,.08);
+    filter:blur(120px);
+    bottom:-200px;
+    right:-150px;
+    z-index:-1;
+}
+
+/* Navbar */
+
+.navbar{
+    width:100%;
+    padding:20px 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    backdrop-filter:blur(15px);
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:rgba(7,7,11,.72);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+    letter-spacing:-1px;
+}
+
+.logo span{
+    color:#8b6cff;
+}
+
+.nav-btn{
+    padding:10px 17px;
+    border:1px solid #292938;
+    border-radius:10px;
+    color:#ccc;
+    text-decoration:none;
+    font-size:13px;
+}
+
+/* Hero */
+
+.hero{
+    max-width:850px;
+    margin:auto;
+    padding:80px 20px 35px;
+    text-align:center;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 13px;
+    border-radius:50px;
+    border:1px solid rgba(139,108,255,.3);
+    background:rgba(139,108,255,.08);
+    color:#b9a9ff;
+    font-size:12px;
+    margin-bottom:22px;
+}
+
+.hero h1{
+    font-size:clamp(42px,9vw,76px);
+    line-height:1;
+    letter-spacing:-4px;
+    margin-bottom:22px;
+}
+
+.gradient{
+    background:linear-gradient(90deg,#fff,#9d8cff,#65d9ff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    color:#8d8d99;
+    max-width:600px;
+    margin:auto;
+    font-size:16px;
+    line-height:1.7;
+}
+
+/* Downloader */
+
+.download-box{
+    max-width:720px;
+    margin:35px auto 0;
+    padding:8px;
+    background:rgba(20,20,29,.85);
+    border:1px solid #292936;
+    border-radius:17px;
+    display:flex;
+    gap:8px;
+    box-shadow:0 20px 70px rgba(0,0,0,.35);
+}
+
+.url-input{
+    flex:1;
+    min-width:0;
+    background:transparent;
+    border:0;
+    outline:0;
+    color:white;
+    padding:16px;
+    font-size:15px;
+}
+
+.url-input::placeholder{
+    color:#686875;
+}
+
+.download-btn{
+    border:0;
+    border-radius:12px;
+    padding:0 24px;
+    background:linear-gradient(135deg,#8065ff,#5d8dff);
+    color:white;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.download-btn:hover{
+    transform:translateY(-1px);
+    filter:brightness(1.1);
+}
+
+.download-btn:active{
+    transform:scale(.97);
+}
+
+.message{
+    min-height:24px;
+    margin-top:16px;
+    color:#777783;
+    font-size:13px;
+}
+
+/* Platforms */
+
+.platforms{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:22px;
+}
+
+.platform{
+    padding:9px 14px;
+    border:1px solid #292936;
+    border-radius:50px;
+    color:#aaa;
+    font-size:12px;
+    background:#101017;
+}
+
+/* Features */
+
+.section{
+    max-width:1000px;
+    margin:70px auto 0;
+    padding:0 20px;
+}
+
+.section-title{
+    text-align:center;
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.section-subtitle{
+    text-align:center;
+    color:#777783;
+    font-size:14px;
+    margin-bottom:30px;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.feature{
+    padding:25px;
+    border:1px solid #242430;
+    background:rgba(16,16,23,.72);
+    border-radius:18px;
+    transition:.25s;
+}
+
+.feature:hover{
+    transform:translateY(-4px);
+    border-color:#403b61;
+}
+
+.icon{
+    width:43px;
+    height:43px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:12px;
+    background:#191724;
+    font-size:20px;
+    margin-bottom:18px;
+}
+
+.feature h3{
+    font-size:16px;
+    margin-bottom:9px;
+}
+
+.feature p{
+    color:#777783;
+    font-size:13px;
+    line-height:1.6;
+}
+
+/* How it works */
+
+.steps{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.step{
+    text-align:center;
+    padding:22px;
+}
+
+.number{
+    width:38px;
+    height:38px;
+    margin:0 auto 14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:#171520;
+    color:#a999ff;
+    font-weight:700;
+}
+
+/* Notice */
+
+.notice{
+    max-width:760px;
+    margin:65px auto 0;
+    padding:18px 20px;
+    border:1px solid #282832;
+    border-radius:14px;
+    text-align:center;
+    color:#73737e;
+    font-size:12px;
+    line-height:1.6;
+}
+
+/* Footer */
+
+footer{
+    text-align:center;
+    padding:55px 20px 30px;
+    color:#50505b;
+    font-size:12px;
+}
+
+.footer-logo{
+    color:#aaa;
+    font-weight:700;
+    font-size:16px;
+    margin-bottom:8px;
+}
+
+/* Mobile */
+
+@media(max-width:700px){
+
+    .navbar{
+        padding:17px 20px;
     }
 
-    body {
-      min-height: 100vh;
-      background: #0b0b0f;
-      color: white;
-      display: flex;
-      justify-content: center;
+    .hero{
+        padding-top:65px;
     }
 
-    .container {
-      width: 100%;
-      max-width: 600px;
-      padding: 25px 18px;
+    .hero h1{
+        font-size:48px;
+        letter-spacing:-3px;
     }
 
-    .logo {
-      text-align: center;
-      font-size: 32px;
-      font-weight: bold;
-      margin-top: 35px;
+    .download-box{
+        flex-direction:column;
+        padding:7px;
     }
 
-    .tagline {
-      text-align: center;
-      color: #999;
-      margin-top: 10px;
-      font-size: 15px;
+    .url-input{
+        padding:15px 12px;
     }
 
-    .card {
-      margin-top: 35px;
-      background: #15151c;
-      border: 1px solid #292934;
-      border-radius: 20px;
-      padding: 22px;
+    .download-btn{
+        min-height:50px;
     }
 
-    .card h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 21px;
+    .features,
+    .steps{
+        grid-template-columns:1fr;
     }
 
-    input {
-      width: 100%;
-      padding: 16px;
-      border-radius: 12px;
-      border: 1px solid #343440;
-      background: #0e0e13;
-      color: white;
-      outline: none;
-      font-size: 15px;
+    .section{
+        margin-top:55px;
     }
+}
 
-    input:focus {
-      border-color: #7c5cff;
-    }
-
-    button {
-      width: 100%;
-      margin-top: 14px;
-      padding: 16px;
-      border: none;
-      border-radius: 12px;
-      background: #7c5cff;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:active {
-      transform: scale(0.98);
-    }
-
-    #message {
-      text-align: center;
-      margin-top: 18px;
-      color: #aaa;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 25px;
-    }
-
-    .feature {
-      background: #15151c;
-      border: 1px solid #292934;
-      border-radius: 15px;
-      padding: 18px 10px;
-      text-align: center;
-      color: #ccc;
-      font-size: 14px;
-    }
-
-    .icon {
-      font-size: 25px;
-      margin-bottom: 8px;
-    }
-
-    .notice {
-      margin-top: 25px;
-      color: #777;
-      text-align: center;
-      font-size: 12px;
-      line-height: 1.5;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 35px;
-      color: #555;
-      font-size: 13px;
-    }
-  </style>
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<!-- Navbar -->
 
-    <div class="logo">Zuvnelo</div>
+<nav class="navbar">
 
-    <div class="tagline">
-      Simple & fast media tools
+    <div class="logo">
+        Zuv<span>nelo</span>
     </div>
 
-    <div class="card">
+    <a href="#about" class="nav-btn">
+        About
+    </a>
 
-      <h2>Download Media</h2>
+</nav>
 
-      <input
-        type="url"
-        id="mediaUrl"
-        placeholder="Paste Instagram or YouTube link..."
-      >
 
-      <button onclick="processLink()">
-        Download
-      </button>
+<!-- Hero -->
 
-      <div id="message">
-        Paste an authorized media link to continue.
-      </div>
+<section class="hero">
+
+    <div class="badge">
+        ✦ SIMPLE • FAST • MODERN
+    </div>
+
+    <h1>
+        Your media.<br>
+        <span class="gradient">Your way.</span>
+    </h1>
+
+    <p>
+        A simple media tool for processing content you own
+        or have permission to use.
+    </p>
+
+
+    <!-- Downloader -->
+
+    <div class="download-box">
+
+        <input
+            id="mediaUrl"
+            class="url-input"
+            type="url"
+            placeholder="Paste your Instagram or YouTube link..."
+        >
+
+        <button
+            class="download-btn"
+            onclick="processLink()"
+        >
+            Continue →
+        </button>
 
     </div>
+
+    <div id="message" class="message">
+        Paste a supported link to get started.
+    </div>
+
+
+    <div class="platforms">
+
+        <div class="platform">Instagram</div>
+
+        <div class="platform">YouTube</div>
+
+        <div class="platform">Authorized Content</div>
+
+    </div>
+
+</section>
+
+
+<!-- Features -->
+
+<section class="section" id="about">
+
+    <h2 class="section-title">
+        Built to be simple
+    </h2>
+
+    <p class="section-subtitle">
+        Everything you need in one clean interface.
+    </p>
+
 
     <div class="features">
 
-      <div class="feature">
-        <div class="icon">⚡</div>
-        Fast
-      </div>
+        <div class="feature">
 
-      <div class="feature">
-        <div class="icon">📱</div>
-        Mobile Friendly
-      </div>
+            <div class="icon">⚡</div>
 
-      <div class="feature">
-        <div class="icon">🔗</div>
-        Easy to Use
-      </div>
+            <h3>Fast & Simple</h3>
 
-      <div class="feature">
-        <div class="icon">🛡️</div>
-        Safe & Simple
-      </div>
+            <p>
+                Clean interface designed to make
+                the process quick and easy.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="icon">📱</div>
+
+            <h3>Mobile Friendly</h3>
+
+            <p>
+                Works beautifully on phones,
+                tablets and desktop screens.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="icon">🛡️</div>
+
+            <h3>Permission First</h3>
+
+            <p>
+                Designed for content you own
+                or have permission to use.
+            </p>
+
+        </div>
 
     </div>
 
-    <div class="notice">
-      Only download content you own or have permission to use.
+</section>
+
+
+<!-- How it works -->
+
+<section class="section">
+
+    <h2 class="section-title">
+        How it works
+    </h2>
+
+    <p class="section-subtitle">
+        Three simple steps.
+    </p>
+
+
+    <div class="steps">
+
+        <div class="step">
+
+            <div class="number">1</div>
+
+            <h3>Paste</h3>
+
+            <p class="section-subtitle">
+                Paste your authorized media link.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="number">2</div>
+
+            <h3>Process</h3>
+
+            <p class="section-subtitle">
+                Zuvnelo processes the supported link.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="number">3</div>
+
+            <h3>Download</h3>
+
+            <p class="section-subtitle">
+                Download when an authorized source is available.
+            </p>
+
+        </div>
+
     </div>
 
-    <footer>
-      © 2026 Zuvnelo
-    </footer>
+</section>
 
-  </div>
 
-  <script>
-    function processLink() {
+<!-- Notice -->
 
-      const url = document.getElementById("mediaUrl").value.trim();
-      const message = document.getElementById("message");
+<div class="notice">
 
-      if (!url) {
-        message.innerText = "Please paste a media link first.";
+    Zuvnelo is intended for content that you own
+    or have permission to download and use.
+    Platform terms and copyright rules still apply.
+
+</div>
+
+
+<!-- Footer -->
+
+<footer>
+
+    <div class="footer-logo">
+        Zuvnelo
+    </div>
+
+    © 2026 Zuvnelo. All rights reserved.
+
+</footer>
+
+
+<script>
+
+function processLink(){
+
+    const input =
+        document.getElementById("mediaUrl");
+
+    const message =
+        document.getElementById("message");
+
+    const url =
+        input.value.trim();
+
+
+    if(!url){
+
+        message.innerText =
+            "Please paste a media link first.";
+
         return;
-      }
-
-      if (
-        !url.includes("instagram.com") &&
-        !url.includes("youtube.com") &&
-        !url.includes("youtu.be")
-      ) {
-        message.innerText = "Please enter a supported Instagram or YouTube link.";
-        return;
-      }
-
-      message.innerText =
-        "Link received. Authorized download processing will be connected here.";
     }
-  </script>
+
+
+    const instagram =
+        url.includes("instagram.com");
+
+    const youtube =
+        url.includes("youtube.com") ||
+        url.includes("youtu.be");
+
+
+    if(!instagram && !youtube){
+
+        message.innerText =
+            "Please enter an Instagram or YouTube link.";
+
+        return;
+    }
+
+
+    message.innerText =
+        "✓ Link received. Authorized processing will be connected here.";
+
+}
+
+</script>
 
 </body>
 </html>
+        
