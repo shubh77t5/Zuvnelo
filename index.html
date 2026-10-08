@@ -4,23 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Zuvnelo — Media Tools</title>
+<title>Zuvnelo — All-in-One Media Tool</title>
 
 <meta name="description"
-content="Zuvnelo is a simple and fast media tool for authorized content.">
+content="Zuvnelo is a modern media tool for content you own or are authorized to use.">
 
-.site-header{
-    max-width:1100px;
-    margin:0 auto;
-    padding:18px 25px;
-}
-
-.site-header img{
-    width:150px;
-    height:auto;
-    display:block;
-}
-    <style>
+<style>
 
 *{
     margin:0;
@@ -33,28 +22,22 @@ html{
 }
 
 body{
-   <header class="site-header">
-  <a href="#">
-    <img src="logo.svg" alt="Zuvnelo Logo">
-  </a>
-</header> 
-    font-family:Inter,Arial,sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     background:#07070b;
     color:#fff;
     min-height:100vh;
+    overflow-x:hidden;
 }
-
-/* Background */
 
 body::before{
     content:"";
     position:fixed;
     width:500px;
     height:500px;
-    background:rgba(124,92,255,.12);
-    filter:blur(120px);
-    top:-200px;
-    left:-150px;
+    background:rgba(95,70,255,.13);
+    filter:blur(130px);
+    top:-220px;
+    left:-180px;
     z-index:-1;
 }
 
@@ -64,59 +47,56 @@ body::after{
     width:450px;
     height:450px;
     background:rgba(0,210,255,.08);
-    filter:blur(120px);
-    bottom:-200px;
-    right:-150px;
+    filter:blur(130px);
+    right:-180px;
+    bottom:-220px;
     z-index:-1;
 }
 
-/* Navbar */
+/* LOGO */
+
+.site-header{
+    max-width:1100px;
+    margin:auto;
+    padding:20px 25px 5px;
+}
+
+.site-header img{
+    width:155px;
+    height:auto;
+    display:block;
+}
+
+/* NAVBAR */
 
 .navbar{
-    width:100%;
-    padding:20px 6%;
+    padding:15px 6%;
     display:flex;
-    align-items:center;
-    justify-content:space-between;
+    justify-content:flex-end;
     border-bottom:1px solid rgba(255,255,255,.06);
-    backdrop-filter:blur(15px);
-    position:sticky;
-    top:0;
-    z-index:10;
-    background:rgba(7,7,11,.72);
-}
-
-.logo{
-    font-size:25px;
-    font-weight:800;
-    letter-spacing:-1px;
-}
-
-.logo span{
-    color:#8b6cff;
 }
 
 .nav-btn{
-    padding:10px 17px;
-    border:1px solid #292938;
-    border-radius:10px;
     color:#ccc;
     text-decoration:none;
+    border:1px solid #292936;
+    padding:9px 16px;
+    border-radius:10px;
     font-size:13px;
 }
 
-/* Hero */
+/* HERO */
 
 .hero{
-    max-width:850px;
+    max-width:900px;
     margin:auto;
-    padding:80px 20px 35px;
+    padding:70px 20px 35px;
     text-align:center;
 }
 
 .badge{
     display:inline-block;
-    padding:8px 13px;
+    padding:8px 14px;
     border-radius:50px;
     border:1px solid rgba(139,108,255,.3);
     background:rgba(139,108,255,.08);
@@ -126,7 +106,7 @@ body::after{
 }
 
 .hero h1{
-    font-size:clamp(42px,9vw,76px);
+    font-size:clamp(43px,9vw,78px);
     line-height:1;
     letter-spacing:-4px;
     margin-bottom:22px;
@@ -141,19 +121,19 @@ body::after{
 
 .hero p{
     color:#8d8d99;
-    max-width:600px;
+    max-width:620px;
     margin:auto;
-    font-size:16px;
     line-height:1.7;
+    font-size:16px;
 }
 
-/* Downloader */
+/* LINK BOX */
 
 .download-box{
-    max-width:720px;
+    max-width:760px;
     margin:35px auto 0;
     padding:8px;
-    background:rgba(20,20,29,.85);
+    background:rgba(20,20,29,.9);
     border:1px solid #292936;
     border-radius:17px;
     display:flex;
@@ -176,46 +156,80 @@ body::after{
     color:#686875;
 }
 
-.download-btn{
+.detect-btn{
     border:0;
     border-radius:12px;
     padding:0 24px;
     background:linear-gradient(135deg,#8065ff,#5d8dff);
     color:white;
-    font-size:14px;
-    font-weight:700;
+    font-weight:bold;
     cursor:pointer;
+}
+
+/* DOWNLOAD BUTTONS */
+
+.download-actions{
+    display:none;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:18px;
+}
+
+.media-btn{
+    border:1px solid #303044;
+    border-radius:12px;
+    padding:13px 22px;
+    color:white;
+    background:#11111a;
+    cursor:pointer;
+    font-weight:bold;
     transition:.2s;
 }
 
-.download-btn:hover{
-    transform:translateY(-1px);
-    filter:brightness(1.1);
+.media-btn:hover{
+    transform:translateY(-2px);
+    border-color:#7160d9;
 }
 
-.download-btn:active{
-    transform:scale(.97);
+.video-btn{
+    background:linear-gradient(135deg,#6f55ff,#527dff);
+    border:0;
+}
+
+.audio-btn{
+    background:linear-gradient(135deg,#9b55ff,#d15cff);
+    border:0;
 }
 
 .message{
     min-height:24px;
-    margin-top:16px;
+    margin-top:15px;
     color:#777783;
     font-size:13px;
 }
 
-/* Platforms */
+/* PLATFORMS */
+
+.platform-title{
+    margin-top:30px;
+    margin-bottom:14px;
+    color:#777783;
+    font-size:13px;
+}
 
 .platforms{
     display:flex;
     justify-content:center;
-    gap:10px;
+    gap:9px;
     flex-wrap:wrap;
-    margin-top:22px;
 }
 
 .platform{
-    padding:9px 14px;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    padding:9px 13px;
     border:1px solid #292936;
     border-radius:50px;
     color:#aaa;
@@ -223,11 +237,15 @@ body::after{
     background:#101017;
 }
 
-/* Features */
+.platform-icon{
+    font-size:15px;
+}
+
+/* SECTIONS */
 
 .section{
     max-width:1000px;
-    margin:70px auto 0;
+    margin:75px auto 0;
     padding:0 20px;
 }
 
@@ -241,8 +259,11 @@ body::after{
     text-align:center;
     color:#777783;
     font-size:14px;
+    line-height:1.6;
     margin-bottom:30px;
 }
+
+/* FEATURES */
 
 .features{
     display:grid;
@@ -255,12 +276,6 @@ body::after{
     border:1px solid #242430;
     background:rgba(16,16,23,.72);
     border-radius:18px;
-    transition:.25s;
-}
-
-.feature:hover{
-    transform:translateY(-4px);
-    border-color:#403b61;
 }
 
 .icon{
@@ -286,7 +301,7 @@ body::after{
     line-height:1.6;
 }
 
-/* How it works */
+/* HOW IT WORKS */
 
 .steps{
     display:grid;
@@ -309,10 +324,38 @@ body::after{
     border-radius:50%;
     background:#171520;
     color:#a999ff;
-    font-weight:700;
+    font-weight:bold;
 }
 
-/* Notice */
+/* FAQ */
+
+.faq{
+    max-width:760px;
+    margin:auto;
+}
+
+details{
+    border:1px solid #242430;
+    background:#101017;
+    border-radius:14px;
+    margin-bottom:10px;
+    padding:16px 18px;
+}
+
+summary{
+    cursor:pointer;
+    font-weight:bold;
+    font-size:14px;
+}
+
+details p{
+    color:#777783;
+    font-size:13px;
+    line-height:1.6;
+    margin-top:12px;
+}
+
+/* NOTICE */
 
 .notice{
     max-width:760px;
@@ -326,7 +369,7 @@ body::after{
     line-height:1.6;
 }
 
-/* Footer */
+/* FOOTER */
 
 footer{
     text-align:center;
@@ -337,21 +380,25 @@ footer{
 
 .footer-logo{
     color:#aaa;
-    font-weight:700;
+    font-weight:bold;
     font-size:16px;
     margin-bottom:8px;
 }
 
-/* Mobile */
+/* MOBILE */
 
 @media(max-width:700px){
 
-    .navbar{
-        padding:17px 20px;
+    .site-header{
+        padding:16px 20px 5px;
+    }
+
+    .site-header img{
+        width:135px;
     }
 
     .hero{
-        padding-top:65px;
+        padding-top:60px;
     }
 
     .hero h1{
@@ -361,14 +408,9 @@ footer{
 
     .download-box{
         flex-direction:column;
-        padding:7px;
     }
 
-    .url-input{
-        padding:15px 12px;
-    }
-
-    .download-btn{
+    .detect-btn{
         min-height:50px;
     }
 
@@ -377,9 +419,10 @@ footer{
         grid-template-columns:1fr;
     }
 
-    .section{
-        margin-top:55px;
+    .media-btn{
+        width:100%;
     }
+
 }
 
 </style>
@@ -387,13 +430,18 @@ footer{
 
 <body>
 
-<!-- Navbar -->
+<!-- ZUVNELO LOGO -->
+
+<header class="site-header">
+    <a href="#">
+        <img src="logo.svg" alt="Zuvnelo Logo">
+    </a>
+</header>
+
+
+<!-- NAVBAR -->
 
 <nav class="navbar">
-
-    <div class="logo">
-        Zuv<span>nelo</span>
-    </div>
 
     <a href="#about" class="nav-btn">
         About
@@ -402,12 +450,12 @@ footer{
 </nav>
 
 
-<!-- Hero -->
+<!-- HERO -->
 
 <section class="hero">
 
     <div class="badge">
-        ✦ SIMPLE • FAST • MODERN
+        ✦ ALL-IN-ONE MEDIA TOOL
     </div>
 
     <h1>
@@ -416,12 +464,12 @@ footer{
     </h1>
 
     <p>
-        A simple media tool for processing content you own
-        or have permission to use.
+        Paste a supported media link and choose
+        video or audio when an authorized source is available.
     </p>
 
 
-    <!-- Downloader -->
+    <!-- LINK INPUT -->
 
     <div class="download-box">
 
@@ -429,11 +477,11 @@ footer{
             id="mediaUrl"
             class="url-input"
             type="url"
-            placeholder="Paste your Instagram or YouTube link..."
+            placeholder="Paste your media link here..."
         >
 
         <button
-            class="download-btn"
+            class="detect-btn"
             onclick="processLink()"
         >
             Continue →
@@ -441,34 +489,91 @@ footer{
 
     </div>
 
+
+    <!-- DOWNLOAD OPTIONS -->
+
+    <div id="downloadActions" class="download-actions">
+
+        <button
+            class="media-btn video-btn"
+            onclick="downloadVideo()"
+        >
+            🎬 Download Video
+        </button>
+
+        <button
+            class="media-btn audio-btn"
+            onclick="downloadAudio()"
+        >
+            🎵 Download Audio
+        </button>
+
+    </div>
+
+
     <div id="message" class="message">
         Paste a supported link to get started.
     </div>
 
 
+    <!-- PLATFORMS -->
+
+    <div class="platform-title">
+        Supported platform interface
+    </div>
+
     <div class="platforms">
 
-        <div class="platform">Instagram</div>
+        <div class="platform">
+            <span class="platform-icon">📷</span>
+            Instagram
+        </div>
 
-        <div class="platform">YouTube</div>
+        <div class="platform">
+            <span class="platform-icon">▶️</span>
+            YouTube
+        </div>
 
-        <div class="platform">Authorized Content</div>
+        <div class="platform">
+            <span class="platform-icon">f</span>
+            Facebook
+        </div>
+
+        <div class="platform">
+            <span class="platform-icon">♪</span>
+            TikTok
+        </div>
+
+        <div class="platform">
+            <span class="platform-icon">𝕏</span>
+            X
+        </div>
+
+        <div class="platform">
+            <span class="platform-icon">P</span>
+            Pinterest
+        </div>
+
+        <div class="platform">
+            <span class="platform-icon">●</span>
+            Reddit
+        </div>
 
     </div>
 
 </section>
 
 
-<!-- Features -->
+<!-- FEATURES -->
 
 <section class="section" id="about">
 
     <h2 class="section-title">
-        Built to be simple
+        Built for everyone
     </h2>
 
     <p class="section-subtitle">
-        Everything you need in one clean interface.
+        A clean interface designed for simple and authorized media processing.
     </p>
 
 
@@ -481,8 +586,8 @@ footer{
             <h3>Fast & Simple</h3>
 
             <p>
-                Clean interface designed to make
-                the process quick and easy.
+                One link box and simple download options
+                keep the experience easy.
             </p>
 
         </div>
@@ -495,7 +600,7 @@ footer{
             <h3>Mobile Friendly</h3>
 
             <p>
-                Works beautifully on phones,
+                Designed to work smoothly on phones,
                 tablets and desktop screens.
             </p>
 
@@ -509,8 +614,8 @@ footer{
             <h3>Permission First</h3>
 
             <p>
-                Designed for content you own
-                or have permission to use.
+                Intended for content you own or
+                have permission to use.
             </p>
 
         </div>
@@ -520,7 +625,7 @@ footer{
 </section>
 
 
-<!-- How it works -->
+<!-- HOW IT WORKS -->
 
 <section class="section">
 
@@ -542,7 +647,7 @@ footer{
             <h3>Paste</h3>
 
             <p class="section-subtitle">
-                Paste your authorized media link.
+                Paste a supported media link.
             </p>
 
         </div>
@@ -552,10 +657,10 @@ footer{
 
             <div class="number">2</div>
 
-            <h3>Process</h3>
+            <h3>Choose</h3>
 
             <p class="section-subtitle">
-                Zuvnelo processes the supported link.
+                Select video or audio when available.
             </p>
 
         </div>
@@ -568,7 +673,7 @@ footer{
             <h3>Download</h3>
 
             <p class="section-subtitle">
-                Download when an authorized source is available.
+                Download from an authorized source.
             </p>
 
         </div>
@@ -578,7 +683,70 @@ footer{
 </section>
 
 
-<!-- Notice -->
+<!-- FAQ -->
+
+<section class="section">
+
+    <h2 class="section-title">
+        Frequently asked questions
+    </h2>
+
+    <p class="section-subtitle">
+        Quick answers about Zuvnelo.
+    </p>
+
+
+    <div class="faq">
+
+        <details>
+
+            <summary>
+                What is Zuvnelo?
+            </summary>
+
+            <p>
+                Zuvnelo is a simple media-tool interface
+                designed for authorized content.
+            </p>
+
+        </details>
+
+
+        <details>
+
+            <summary>
+                Can I download video and audio?
+            </summary>
+
+            <p>
+                The interface supports both options.
+                Actual processing will be connected to
+                an authorized backend or API later.
+            </p>
+
+        </details>
+
+
+        <details>
+
+            <summary>
+                Which platforms are supported?
+            </summary>
+
+            <p>
+                The interface is prepared for multiple
+                platforms including Instagram, YouTube,
+                Facebook, TikTok, X, Pinterest and Reddit.
+            </p>
+
+        </details>
+
+    </div>
+
+</section>
+
+
+<!-- NOTICE -->
 
 <div class="notice">
 
@@ -589,7 +757,7 @@ footer{
 </div>
 
 
-<!-- Footer -->
+<!-- FOOTER -->
 
 <footer>
 
@@ -612,6 +780,9 @@ function processLink(){
     const message =
         document.getElementById("message");
 
+    const actions =
+        document.getElementById("downloadActions");
+
     const url =
         input.value.trim();
 
@@ -621,34 +792,64 @@ function processLink(){
         message.innerText =
             "Please paste a media link first.";
 
+        actions.style.display = "none";
+
         return;
     }
 
 
-    const instagram =
-        url.includes("instagram.com");
-
-    const youtube =
+    const supported =
+        url.includes("instagram.com") ||
         url.includes("youtube.com") ||
-        url.includes("youtu.be");
+        url.includes("youtu.be") ||
+        url.includes("facebook.com") ||
+        url.includes("fb.watch") ||
+        url.includes("tiktok.com") ||
+        url.includes("x.com") ||
+        url.includes("twitter.com") ||
+        url.includes("pinterest.com") ||
+        url.includes("reddit.com");
 
 
-    if(!instagram && !youtube){
+    if(!supported){
 
         message.innerText =
-            "Please enter an Instagram or YouTube link.";
+            "This platform is not supported yet.";
+
+        actions.style.display = "none";
 
         return;
     }
 
 
     message.innerText =
-        "✓ Link received. Authorized processing will be connected here.";
+        "✓ Link recognized. Choose an option below.";
 
+    actions.style.display = "flex";
+
+}
+
+
+function downloadVideo(){
+
+    const message =
+        document.getElementById("message");
+
+    message.innerText =
+        "Video processing will be connected to an authorized source.";
+}
+
+
+function downloadAudio(){
+
+    const message =
+        document.getElementById("message");
+
+    message.innerText =
+        "Audio processing will be connected to an authorized source.";
 }
 
 </script>
 
 </body>
 </html>
-        
