@@ -4,16 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Zuvnelo — All-in-One Media Tool</title>
-
-<meta name="description"
-content="Zuvnelo is a modern media tool for content you own or are authorized to use.">
+<title>Zuvnelo - All-in-One Media Tool</title>
 
 <style>
-
 *{
-    margin:0;
-    padding:0;
     box-sizing:border-box;
 }
 
@@ -22,222 +16,161 @@ html{
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#07070b;
+    margin:0;
+    background:#080810;
     color:#fff;
-    min-height:100vh;
-    overflow-x:hidden;
+    font-family:Arial,Helvetica,sans-serif;
 }
-
-body::before{
-    content:"";
-    position:fixed;
-    width:500px;
-    height:500px;
-    background:rgba(95,70,255,.13);
-    filter:blur(130px);
-    top:-220px;
-    left:-180px;
-    z-index:-1;
-}
-
-body::after{
-    content:"";
-    position:fixed;
-    width:450px;
-    height:450px;
-    background:rgba(0,210,255,.08);
-    filter:blur(130px);
-    right:-180px;
-    bottom:-220px;
-    z-index:-1;
-}
-
 
 /* HEADER */
-
 .site-header{
-    max-width:1100px;
-    margin:auto;
-    padding:20px 25px 5px;
+    padding:20px 6%;
+    border-bottom:1px solid #20202d;
+    display:flex;
+    align-items:center;
 }
 
 .site-header img{
-    width:155px;
+    width:145px;
     height:auto;
-    display:block;
 }
 
-
 /* NAVBAR */
-
 .navbar{
     padding:15px 6%;
     display:flex;
     justify-content:flex-end;
-    border-bottom:1px solid rgba(255,255,255,.06);
 }
 
 .nav-btn{
-    color:#ccc;
+    color:#fff;
     text-decoration:none;
-    border:1px solid #292936;
+    border:1px solid #333344;
     padding:9px 16px;
     border-radius:10px;
-    font-size:13px;
+    font-size:14px;
 }
 
-
 /* HERO */
-
 .hero{
-    max-width:1000px;
+    max-width:900px;
     margin:auto;
-    padding:70px 20px 35px;
+    padding:65px 20px 80px;
     text-align:center;
 }
 
 .badge{
     display:inline-block;
     padding:8px 14px;
-    border-radius:50px;
-    border:1px solid rgba(139,108,255,.3);
-    background:rgba(139,108,255,.08);
-    color:#b9a9ff;
+    border:1px solid #343449;
+    border-radius:30px;
+    color:#b9a8ff;
     font-size:12px;
-    margin-bottom:22px;
+    letter-spacing:1px;
 }
 
-.hero h1{
-    font-size:clamp(43px,9vw,78px);
-    line-height:1;
-    letter-spacing:-4px;
-    margin-bottom:22px;
+h1{
+    font-size:58px;
+    line-height:1.05;
+    margin:25px 0 15px;
 }
 
 .gradient{
-    background:linear-gradient(90deg,#fff,#9d8cff,#65d9ff);
+    background:linear-gradient(90deg,#a78bfa,#ec4899);
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
 }
 
-.hero p{
-    color:#8d8d99;
-    max-width:620px;
+.hero-text{
+    color:#9999aa;
+    max-width:650px;
     margin:auto;
     line-height:1.7;
-    font-size:16px;
 }
 
-
-/* PLATFORMS */
-
+/* PLATFORM */
 .platform-title{
-    margin-top:35px;
-    margin-bottom:14px;
-    color:#777783;
-    font-size:13px;
+    margin-top:40px;
+    margin-bottom:15px;
+    color:#aaa;
+    font-size:14px;
 }
 
 .platforms{
     display:flex;
-    justify-content:center;
-    gap:9px;
     flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
 }
 
 .platform{
-    display:flex;
-    align-items:center;
-    gap:7px;
-    padding:10px 14px;
-    border:1px solid #292936;
-    border-radius:50px;
-    color:#aaa;
-    font-size:12px;
-    background:#101017;
+    width:auto;
+    margin:0;
+    padding:12px 16px;
+    border-radius:12px;
+    border:1px solid #303040;
+    background:#11111b;
+    color:#fff;
     cursor:pointer;
     transition:.2s;
 }
 
 .platform:hover{
-    border-color:#6555db;
-    color:white;
-    transform:translateY(-1px);
+    border-color:#8b5cf6;
+    transform:translateY(-2px);
 }
 
-.platform.active{
-    color:white;
-    border-color:#8065ff;
-    background:linear-gradient(
-        135deg,
-        rgba(128,101,255,.28),
-        rgba(82,125,255,.18)
-    );
-    box-shadow:0 0 20px rgba(110,90,255,.15);
-}
-
-.platform-icon{
-    font-size:15px;
-}
-
-
-/* INPUT */
-
+/* DOWNLOAD BOX */
 .download-box{
-    max-width:760px;
-    margin:25px auto 0;
-    padding:8px;
-    background:rgba(20,20,29,.9);
-    border:1px solid #292936;
-    border-radius:17px;
+    margin:30px auto 0;
+    max-width:720px;
     display:flex;
-    gap:8px;
-    box-shadow:0 20px 70px rgba(0,0,0,.35);
+    gap:10px;
 }
 
 .url-input{
     flex:1;
     min-width:0;
-    background:transparent;
-    border:0;
-    outline:0;
+    padding:17px;
+    border-radius:12px;
+    border:1px solid #333344;
+    background:#11111b;
     color:white;
-    padding:16px;
+    outline:none;
     font-size:15px;
 }
 
-.url-input::placeholder{
-    color:#686875;
+.url-input:focus{
+    border-color:#8b5cf6;
 }
 
 .detect-btn{
+    padding:0 22px;
     border:0;
     border-radius:12px;
-    padding:0 24px;
-    background:linear-gradient(135deg,#8065ff,#5d8dff);
-    color:white;
+    background:linear-gradient(90deg,#7c3aed,#ec4899);
+    color:#fff;
     font-weight:bold;
     cursor:pointer;
 }
 
-.detect-btn:active{
-    transform:scale(.98);
+/* MESSAGE */
+.message{
+    margin-top:20px;
+    color:#9999aa;
+    min-height:24px;
 }
 
-
 /* PREVIEW */
-
 .preview-card{
     display:none;
-    max-width:600px;
-    margin:25px auto 0;
-    padding:14px;
-    background:#101017;
-    border:1px solid #292936;
+    margin:30px auto 0;
+    max-width:650px;
+    padding:15px;
+    background:#11111b;
+    border:1px solid #292938;
     border-radius:18px;
-    text-align:left;
 }
 
 .preview-card.show{
@@ -245,29 +178,27 @@ body::after{
 }
 
 .preview-label{
-    color:#9999a5;
-    font-size:12px;
+    text-align:left;
+    color:#aaa;
     margin-bottom:10px;
+    font-size:14px;
 }
 
 .preview-video{
     width:100%;
-    max-height:500px;
-    display:block;
-    object-fit:contain;
+    max-height:450px;
     border-radius:12px;
     background:#000;
 }
 
-
 /* DOWNLOAD BUTTONS */
-
 .download-actions{
     display:none;
-    max-width:600px;
-    margin:15px auto 0;
+    max-width:650px;
+    margin:20px auto 0;
     gap:10px;
     flex-wrap:wrap;
+    justify-content:center;
 }
 
 .download-actions.show{
@@ -276,206 +207,124 @@ body::after{
 
 .media-btn{
     flex:1;
-    min-width:150px;
-    border:1px solid #303044;
+    min-width:180px;
+    padding:14px;
+    border:1px solid #333344;
     border-radius:12px;
-    padding:13px 18px;
-    color:white;
-    background:#11111a;
+    background:#11111b;
+    color:#fff;
     cursor:pointer;
-    font-weight:bold;
-    transition:.2s;
 }
 
 .media-btn:hover{
-    transform:translateY(-2px);
-    border-color:#7160d9;
+    border-color:#8b5cf6;
 }
-
-.video-btn{
-    background:linear-gradient(135deg,#6f55ff,#527dff);
-    border:0;
-}
-
-.hd-btn{
-    background:linear-gradient(135deg,#477cff,#35b7ff);
-    border:0;
-}
-
-.audio-btn{
-    background:linear-gradient(135deg,#9b55ff,#d15cff);
-    border:0;
-}
-
-
-/* MESSAGE */
-
-.message{
-    min-height:24px;
-    margin-top:15px;
-    color:#777783;
-    font-size:13px;
-}
-
 
 /* SECTIONS */
-
 .section{
     max-width:1000px;
-    margin:75px auto 0;
-    padding:0 20px;
+    margin:auto;
+    padding:70px 20px;
 }
 
 .section-title{
     text-align:center;
-    font-size:28px;
-    margin-bottom:10px;
+    font-size:35px;
+    margin-bottom:35px;
 }
 
-.section-subtitle{
-    text-align:center;
-    color:#777783;
-    font-size:14px;
-    line-height:1.6;
-    margin-bottom:30px;
-}
-
-
-/* FEATURES */
-
-.features{
+.cards{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:15px;
+    gap:18px;
 }
 
-.feature{
-    padding:25px;
-    border:1px solid #242430;
-    background:rgba(16,16,23,.72);
+.card{
+    background:#11111b;
+    border:1px solid #292938;
     border-radius:18px;
+    padding:25px;
 }
 
-.icon{
-    width:43px;
-    height:43px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:12px;
-    background:#191724;
-    font-size:20px;
-    margin-bottom:18px;
+.card h3{
+    margin-top:0;
 }
 
-.feature h3{
-    font-size:16px;
-    margin-bottom:9px;
-}
-
-.feature p{
-    color:#777783;
-    font-size:13px;
+.card p{
+    color:#9999aa;
     line-height:1.6;
 }
 
-
-/* HOW IT WORKS */
-
+/* STEPS */
 .steps{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:15px;
+    gap:18px;
 }
 
 .step{
-    text-align:center;
-    padding:22px;
+    padding:25px;
+    background:#11111b;
+    border:1px solid #292938;
+    border-radius:18px;
 }
 
-.number{
-    width:38px;
-    height:38px;
-    margin:0 auto 14px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:50%;
-    background:#171520;
-    color:#a999ff;
+.step-number{
+    font-size:30px;
     font-weight:bold;
+    color:#a78bfa;
 }
-
-.step p{
-    color:#777783;
-    font-size:13px;
-    line-height:1.6;
-    margin-top:10px;
-}
-
 
 /* FAQ */
-
 .faq{
-    max-width:760px;
+    max-width:750px;
     margin:auto;
 }
 
 details{
-    border:1px solid #242430;
-    background:#101017;
+    background:#11111b;
+    border:1px solid #292938;
     border-radius:14px;
+    padding:17px;
     margin-bottom:10px;
-    padding:16px 18px;
 }
 
 summary{
     cursor:pointer;
     font-weight:bold;
-    font-size:14px;
 }
 
 details p{
-    color:#777783;
-    font-size:13px;
+    color:#9999aa;
     line-height:1.6;
-    margin-top:12px;
 }
-
 
 /* NOTICE */
-
 .notice{
-    max-width:760px;
-    margin:65px auto 0;
-    padding:18px 20px;
-    border:1px solid #282832;
-    border-radius:14px;
-    text-align:center;
-    color:#73737e;
-    font-size:12px;
+    max-width:900px;
+    margin:20px auto 60px;
+    padding:20px;
+    border:1px solid #3a354c;
+    border-radius:15px;
+    color:#9999aa;
     line-height:1.6;
+    text-align:center;
 }
 
-
 /* FOOTER */
-
 footer{
+    border-top:1px solid #20202d;
+    padding:35px 20px;
     text-align:center;
-    padding:55px 20px 30px;
-    color:#50505b;
-    font-size:12px;
+    color:#666;
 }
 
 .footer-logo{
-    color:#aaa;
+    color:#fff;
+    font-size:25px;
     font-weight:bold;
-    font-size:16px;
-    margin-bottom:8px;
+    margin-bottom:10px;
 }
-
-
-/* SHUBH SIGNATURE */
 
 .creator{
     margin-top:18px;
@@ -487,26 +336,11 @@ footer{
     text-shadow:0 0 12px rgba(150,120,255,.35);
 }
 
-
 /* MOBILE */
-
 @media(max-width:700px){
 
-    .site-header{
-        padding:16px 20px 5px;
-    }
-
-    .site-header img{
-        width:135px;
-    }
-
-    .hero{
-        padding-top:60px;
-    }
-
-    .hero h1{
-        font-size:48px;
-        letter-spacing:-3px;
+    h1{
+        font-size:42px;
     }
 
     .download-box{
@@ -514,193 +348,121 @@ footer{
     }
 
     .detect-btn{
-        min-height:50px;
+        padding:16px;
     }
 
-    .features,
+    .cards,
     .steps{
         grid-template-columns:1fr;
     }
 
-    .download-actions{
-        flex-direction:column;
-    }
-
-    .media-btn{
-        width:100%;
-    }
-
     .platform{
-        padding:9px 12px;
+        flex:1;
+        min-width:130px;
     }
 }
-
 </style>
 </head>
 
-
 <body>
 
-
 <!-- HEADER -->
-
 <header class="site-header">
-
-    <a href="#">
+    <a href="index.html">
         <img src="logo.svg" alt="Zuvnelo Logo">
     </a>
-
 </header>
 
-
-<!-- NAVBAR -->
-
+<!-- NAV -->
 <nav class="navbar">
-
-    <a href="#about" class="nav-btn">
-        About
-    </a>
-
+    <a href="#about" class="nav-btn">About</a>
 </nav>
 
-
 <!-- HERO -->
-
 <section class="hero">
 
     <div class="badge">
         ✦ ALL-IN-ONE MEDIA TOOL
     </div>
 
-
     <h1>
         Your media.<br>
         <span class="gradient">Your way.</span>
     </h1>
 
-
-    <p>
-        Select a platform, paste a supported media link
-        and choose the available download format.
+    <p class="hero-text">
+        Select a platform and continue to its dedicated Zuvnelo page.
+        Paste supported media links and choose the available option.
     </p>
 
-
-    <!-- PLATFORM SELECTOR -->
-
+    <!-- PLATFORMS -->
     <div class="platform-title">
         Select platform
     </div>
 
-
     <div class="platforms">
 
-
-        <button
-            class="platform"
-            onclick="selectPlatform('Instagram',this)">
-
-            <span class="platform-icon">📷</span>
-            Instagram
-
+        <button class="platform"
+        onclick="location.href='instagram.html'">
+            📷 Instagram
         </button>
 
-
-        <button
-            class="platform"
-            onclick="selectPlatform('YouTube',this)">
-
-            <span class="platform-icon">▶️</span>
-            YouTube
-
+        <button class="platform"
+        onclick="location.href='youtube.html'">
+            ▶️ YouTube
         </button>
 
-
-        <button
-            class="platform"
-            onclick="selectPlatform('Facebook',this)">
-
-            <span class="platform-icon">f</span>
-            Facebook
-
+        <button class="platform"
+        onclick="location.href='facebook.html'">
+            f Facebook
         </button>
 
-
-        <button
-            class="platform"
-            onclick="selectPlatform('TikTok',this)">
-
-            <span class="platform-icon">♪</span>
-            TikTok
-
+        <button class="platform"
+        onclick="location.href='tiktok.html'">
+            ♪ TikTok
         </button>
 
-
-        <button
-            class="platform"
-            onclick="selectPlatform('X',this)">
-
-            <span class="platform-icon">𝕏</span>
-            X
-
+        <button class="platform"
+        onclick="location.href='x.html'">
+            𝕏 X
         </button>
 
-
-        <button
-            class="platform"
-            onclick="selectPlatform('Pinterest',this)">
-
-            <span class="platform-icon">P</span>
-            Pinterest
-
+        <button class="platform"
+        onclick="location.href='pinterest.html'">
+            P Pinterest
         </button>
 
-
-        <button
-            class="platform"
-            onclick="selectPlatform('Reddit',this)">
-
-            <span class="platform-icon">●</span>
-            Reddit
-
+        <button class="platform"
+        onclick="location.href='reddit.html'">
+            ● Reddit
         </button>
-
 
     </div>
 
-
-    <!-- URL INPUT -->
-
+    <!-- DIRECT MEDIA INPUT -->
     <div class="download-box">
 
         <input
             id="mediaUrl"
             class="url-input"
             type="url"
-            placeholder="Select a platform and paste your link..."
+            placeholder="Or paste a direct media link..."
         >
-
 
         <button
             class="detect-btn"
             onclick="processLink()">
-
             Continue →
-
         </button>
 
     </div>
 
-
     <!-- PREVIEW -->
-
-    <div
-        id="previewCard"
-        class="preview-card">
+    <div id="previewCard" class="preview-card">
 
         <div class="preview-label">
             Video Preview
         </div>
-
 
         <video
             id="previewVideo"
@@ -711,128 +473,65 @@ footer{
 
     </div>
 
-
-    <!-- DOWNLOAD OPTIONS -->
-
-    <div
-        id="downloadActions"
-        class="download-actions">
-
+    <!-- DOWNLOAD ACTIONS -->
+    <div id="downloadActions" class="download-actions">
 
         <button
-            class="media-btn video-btn"
+            class="media-btn"
             onclick="downloadMedia('video')">
-
             🎬 Download Video
-
         </button>
 
-
         <button
-            class="media-btn hd-btn"
+            class="media-btn"
             onclick="downloadMedia('hd')">
-
             ⚡ Download HD
-
         </button>
-
 
         <button
-            class="media-btn audio-btn"
+            class="media-btn"
             onclick="downloadMedia('audio')">
-
             🎵 Download Audio
-
         </button>
-
 
     </div>
 
-
-    <div
-        id="message"
-        class="message">
-
-        Select a platform to get started.
-
+    <div id="message" class="message">
+        Select a platform to continue.
     </div>
 
 </section>
 
 
-<!-- FEATURES -->
-
-<section
-    class="section"
-    id="about">
-
+<!-- ABOUT -->
+<section class="section" id="about">
 
     <h2 class="section-title">
-        Built for everyone
+        Everything in one place
     </h2>
 
+    <div class="cards">
 
-    <p class="section-subtitle">
-        A clean interface designed for simple and authorized media processing.
-    </p>
-
-
-    <div class="features">
-
-
-        <div class="feature">
-
-            <div class="icon">
-                ⚡
-            </div>
-
-            <h3>
-                Fast & Simple
-            </h3>
-
+        <div class="card">
+            <h3>⚡ Fast Interface</h3>
             <p>
-                Select your platform, paste a link
-                and choose your preferred format.
+                A clean and simple interface designed for quick access.
             </p>
-
         </div>
 
-
-        <div class="feature">
-
-            <div class="icon">
-                📱
-            </div>
-
-            <h3>
-                Mobile Friendly
-            </h3>
-
+        <div class="card">
+            <h3>📱 Mobile Friendly</h3>
             <p>
-                Designed to work smoothly on phones,
-                tablets and desktop screens.
+                Zuvnelo is designed to work comfortably on mobile devices.
             </p>
-
         </div>
 
-
-        <div class="feature">
-
-            <div class="icon">
-                🛡️
-            </div>
-
-            <h3>
-                Permission First
-            </h3>
-
+        <div class="card">
+            <h3>🎯 Simple Workflow</h3>
             <p>
-                Intended for content you own or
-                have permission to use.
+                Choose your platform, open its page and continue from there.
             </p>
-
         </div>
-
 
     </div>
 
@@ -840,74 +539,37 @@ footer{
 
 
 <!-- HOW IT WORKS -->
-
 <section class="section">
-
 
     <h2 class="section-title">
         How it works
     </h2>
 
-
-    <p class="section-subtitle">
-        Three simple steps.
-    </p>
-
-
     <div class="steps">
 
-
         <div class="step">
-
-            <div class="number">
-                1
-            </div>
-
-            <h3>
-                Select
-            </h3>
-
+            <div class="step-number">01</div>
+            <h3>Select</h3>
             <p>
-                Choose Instagram, YouTube or another
-                supported platform.
+                Select the platform you want to use.
             </p>
-
         </div>
 
-
         <div class="step">
-
-            <div class="number">
-                2
-            </div>
-
-            <h3>
-                Paste
-            </h3>
-
+            <div class="step-number">02</div>
+            <h3>Paste</h3>
             <p>
-                Paste the authorized media link.
+                Paste a supported media link on that platform's page.
             </p>
-
         </div>
 
-
         <div class="step">
-
-            <div class="number">
-                3
-            </div>
-
-            <h3>
-                Download
-            </h3>
-
+            <div class="step-number">03</div>
+            <h3>Continue</h3>
             <p>
-                Choose video, HD or audio when available.
+                Continue with the available media processing options.
             </p>
-
         </div>
-
 
     </div>
 
@@ -915,66 +577,46 @@ footer{
 
 
 <!-- FAQ -->
-
 <section class="section">
 
-
     <h2 class="section-title">
-        Frequently asked questions
+        FAQ
     </h2>
-
-
-    <p class="section-subtitle">
-        Quick answers about Zuvnelo.
-    </p>
-
 
     <div class="faq">
 
-
         <details>
-
             <summary>
                 What is Zuvnelo?
             </summary>
 
             <p>
-                Zuvnelo is a simple media-tool interface
-                designed for authorized content.
+                Zuvnelo is an all-in-one media utility interface.
             </p>
-
         </details>
 
-
         <details>
-
             <summary>
-                Can I download video and audio?
+                Why does every platform have a separate page?
             </summary>
 
             <p>
-                The interface supports video, HD video
-                and audio options. Actual processing
-                requires a compatible backend.
+                Each platform can have its own interface and processing
+                system, making the website easier to use.
             </p>
-
         </details>
 
-
         <details>
-
             <summary>
-                Which platforms are supported?
+                Can social-media links be processed directly?
             </summary>
 
             <p>
-                The interface supports Instagram,
-                YouTube, Facebook, TikTok, X,
-                Pinterest and Reddit selection.
+                Social-platform processing requires a suitable backend
+                or authorized API integration. The GitHub Pages frontend
+                alone cannot perform that server-side processing.
             </p>
-
         </details>
-
 
     </div>
 
@@ -982,27 +624,22 @@ footer{
 
 
 <!-- NOTICE -->
-
 <div class="notice">
 
-    Zuvnelo is intended for content that you own
-    or have permission to download and use.
-    Platform terms and copyright rules still apply.
+    Zuvnelo is intended for content that you own or have permission
+    to download and use. Platform terms and copyright rules still apply.
 
 </div>
 
 
 <!-- FOOTER -->
-
 <footer>
 
     <div class="footer-logo">
         Zuvnelo
     </div>
 
-
     © 2026 Zuvnelo. All rights reserved.
-
 
     <div class="creator">
         Shubh
@@ -1013,76 +650,42 @@ footer{
 
 <script>
 
-
-/* ZUVNELO MAIN SCRIPT */
-
-let selectedPlatform = "";
 let currentMediaUrl = "";
 
 
-/* SELECT PLATFORM */
+/* CHECK URL */
+function isValidUrl(value){
 
-function selectPlatform(platform, button){
-
-    selectedPlatform = platform;
-
-
-    document
-        .querySelectorAll(".platform")
-        .forEach(item => {
-
-            item.classList.remove("active");
-
-        });
-
-
-    button.classList.add("active");
-
-
-    const input =
-        document.getElementById("mediaUrl");
-
-
-    input.placeholder =
-        "Paste your " +
-        platform +
-        " link here...";
-
-
-    document.getElementById("message").innerText =
-        platform +
-        " selected. Paste your link.";
-
-
-    input.focus();
+    try{
+        new URL(value);
+        return true;
+    }
+    catch{
+        return false;
+    }
 
 }
 
 
-/* PROCESS LINK */
+/* DIRECT VIDEO CHECK */
+function isDirectVideo(url){
 
+    return /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(url);
+
+}
+
+
+/* PROCESS */
 function processLink(){
 
     const input =
         document.getElementById("mediaUrl");
 
-
     const message =
         document.getElementById("message");
 
-
     const url =
         input.value.trim();
-
-
-    if(!selectedPlatform){
-
-        message.innerText =
-            "Please select a platform first.";
-
-        return;
-
-    }
 
 
     if(!url){
@@ -1091,7 +694,6 @@ function processLink(){
             "Please paste a media link first.";
 
         return;
-
     }
 
 
@@ -1101,7 +703,6 @@ function processLink(){
             "Please enter a valid URL.";
 
         return;
-
     }
 
 
@@ -1112,74 +713,28 @@ function processLink(){
 
         showPreview(url);
 
-
         message.innerText =
             "✓ Video detected. Choose a download option.";
-
 
         document
             .getElementById("downloadActions")
             .classList.add("show");
 
-
         return;
-
     }
-
-
-    hidePreview();
 
 
     message.innerText =
-        "✓ " +
-        selectedPlatform +
-        " link received. Backend processing is required for preview and download.";
-
-
-    document
-        .getElementById("downloadActions")
-        .classList.add("show");
-
-}
-
-
-/* VALID URL */
-
-function isValidUrl(value){
-
-    try{
-
-        new URL(value);
-
-        return true;
-
-    }
-
-    catch{
-
-        return false;
-
-    }
-
-}
-
-
-/* DIRECT VIDEO */
-
-function isDirectVideo(url){
-
-    return /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(url);
+        "✓ Link received. Backend processing is required for this platform link.";
 
 }
 
 
 /* SHOW PREVIEW */
-
 function showPreview(videoUrl){
 
     const card =
         document.getElementById("previewCard");
-
 
     const video =
         document.getElementById("previewVideo");
@@ -1187,40 +742,12 @@ function showPreview(videoUrl){
 
     video.src = videoUrl;
 
-
     card.classList.add("show");
 
 }
 
 
-/* HIDE PREVIEW */
-
-function hidePreview(){
-
-    const card =
-        document.getElementById("previewCard");
-
-
-    const video =
-        document.getElementById("previewVideo");
-
-
-    video.pause();
-
-
-    video.removeAttribute("src");
-
-
-    video.load();
-
-
-    card.classList.remove("show");
-
-}
-
-
 /* DOWNLOAD */
-
 function downloadMedia(type){
 
     const message =
@@ -1233,7 +760,6 @@ function downloadMedia(type){
             "Please process a media link first.";
 
         return;
-
     }
 
 
@@ -1242,29 +768,22 @@ function downloadMedia(type){
         const link =
             document.createElement("a");
 
-
         link.href =
             currentMediaUrl;
-
 
         link.download =
             "zuvnelo-" + type;
 
-
         document.body.appendChild(link);
-
 
         link.click();
 
-
         link.remove();
-
 
         message.innerText =
             "✓ Download started.";
 
         return;
-
     }
 
 
@@ -1277,19 +796,15 @@ function downloadMedia(type){
 
 
 /* ENTER KEY */
-
 document
     .getElementById("mediaUrl")
     .addEventListener("keydown", function(event){
 
         if(event.key === "Enter"){
-
             processLink();
-
         }
 
     });
-
 
 </script>
 
