@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 180">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00D9FF"/>
+      <stop offset="50%" stop-color="#5865F2"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="180" rx="35" fill="#090B12"/>
+
+  <circle cx="90" cy="90" r="58" fill="url(#g)"/>
+
+  <path d="M65 55 L105 55 L91 82 L116 82 L70 130 L79 96 L56 96 Z"
+        fill="white"/>
+
+  <text x="165" y="108"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="58"
+        font-weight="700"
+        fill="white">
+    Zuvnelo
+  </text>
+</svg>
