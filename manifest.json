@@ -1,7 +1,7 @@
 {
-  "name": "Zuvnelo - One Calm Space",
+  "name": "Zuvnelo",
   "short_name": "Zuvnelo",
-  "description": "One calm space for your social links.",
+  "description": "Your calm space for social links",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
