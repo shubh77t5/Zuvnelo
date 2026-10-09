@@ -259,7 +259,7 @@ header {
   font-size: 15px;
 }
 
-/* Status messages styling */
+/* Status Messages Styles */
 #resultArea {
   margin-top: 20px;
   font-size: 16px;
@@ -297,21 +297,18 @@ header {
       <label class="input-label" for="videoUrl">Paste your social media link below</label>
       
       <div class="input-row">
-        <!-- यहाँ हमने id="videoUrl" जोड़ दिया है -->
         <input type="text" id="videoUrl" placeholder="https://instagram.com...">
       </div>
 
-      <!-- यहाँ हमने id="downloadBtn" और onclick फंक्शन जोड़ दिया है -->
       <button class="primary-btn" id="downloadBtn" onclick="processDownload()">Download Video</button>
       
-      <!-- स्टेटस मैसेज दिखाने की जगह -->
       <div id="resultArea"></div>
 
       <p class="hint">Note: Video download will start automatically once processed.</p>
     </div>
   </div>
 
-  <!-- 🔥 सबसे ज़रूरी चीज़: जावास्क्रिप्ट फ़ाइल को लिंक करना -->
-  <script src="script.js"></script>
+  <!-- 🔥 यहाँ सुधार कर दिया गया है: script.js की जगह backend.js लिंक है -->
+  <script src="backend.js"></script>
 </body>
 </html>
