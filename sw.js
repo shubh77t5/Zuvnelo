@@ -1,15 +1,17 @@
 const CACHE_NAME = "zuvnelo-v1";
 
+const FILES_TO_CACHE = [
+  "./",
+  "./index.html",
+  "./manifest.json",
+  "./icon.svg"
+];
+
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) =>
-      cache.addAll([
-        "./",
-        "./index.html",
-        "./manifest.json",
-        "./icon.svg"
-      ])
-    )
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(FILES_TO_CACHE);
+    })
   );
 
   self.skipWaiting();
@@ -51,16 +53,14 @@ self.addEventListener("fetch", (event) => {
       })
       .catch(async () => {
         const cached = await caches.match(event.request);
+
         if (cached) return cached;
 
         if (event.request.mode === "navigate") {
           return caches.match("./index.html");
         }
 
-        return new Response("Offline", {
-          status: 503,
-          statusText: "Offline"
-        });
+        return new Response("Offline", { status: 503 });
       })
   );
 });
