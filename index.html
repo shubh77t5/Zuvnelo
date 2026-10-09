@@ -2,38 +2,27 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#09090f">
-<meta name="description" content="Zuvnelo — Your simple, modern social media link assistant.">
-<title>Zuvnelo — Your Digital Space</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090b16">
+<meta name="description" content="Zuvnelo — One calm space to organize social links, save favourites, and keep recent links close.">
+<title>Zuvnelo — One Calm Space</title>
 
 <style>
 :root {
-  --bg: #09090f;
-  --card: #12121c;
-  --card2: #191927;
+  --bg: #090b16;
+  --card: rgba(24, 27, 48, .76);
+  --card2: rgba(22, 25, 45, .88);
   --text: #f5f5ff;
-  --muted: #a2a2b8;
-  --border: rgba(255,255,255,.09);
-  --primary: #8b5cf6;
-  --secondary: #ec4899;
-  --shadow: 0 20px 60px rgba(0,0,0,.25);
-}
-
-body.light {
-  --bg: #f5f5ff;
-  --card: #ffffff;
-  --card2: #eeeeff;
-  --text: #171725;
-  --muted: #66667d;
-  --border: rgba(20,20,50,.12);
-  --shadow: 0 20px 50px rgba(30,20,70,.08);
+  --muted: #a4a8c1;
+  --border: rgba(191, 194, 255, .15);
+  --purple: #8b78ff;
+  --cyan: #57dfd0;
 }
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 html {
@@ -41,15 +30,22 @@ html {
 }
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   min-height: 100vh;
-  transition: background .25s, color .25s;
+  background:
+    radial-gradient(ellipse at 0% 5%, rgba(94, 61, 194, .22), transparent 36%),
+    radial-gradient(ellipse at 100% 20%, rgba(30, 160, 163, .12), transparent 35%),
+    var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.5;
 }
 
 button, input {
   font: inherit;
+}
+
+button, a {
+  -webkit-tap-highlight-color: transparent;
 }
 
 button {
@@ -66,53 +62,30 @@ a {
   margin: auto;
 }
 
-/* Background */
-
-.background-glow {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  overflow: hidden;
+.gradient {
+  background: linear-gradient(105deg, #9581ff 5%, #8ebdff 48%, #5ce2d0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.glow {
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  filter: blur(110px);
-  opacity: .20;
-}
-
-.glow.one {
-  background: #7c3aed;
-  top: 5%;
-  left: -120px;
-}
-
-.glow.two {
-  background: #ec4899;
-  top: 40%;
-  right: -150px;
-}
-
-/* Header */
+/* Glass header */
 
 header {
   position: sticky;
   top: 0;
-  z-index: 10;
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: blur(18px);
+  z-index: 20;
+  background: rgba(9, 11, 22, .73);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
   border-bottom: 1px solid var(--border);
 }
 
 .nav {
-  min-height: 76px;
+  height: 72px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   gap: 12px;
 }
 
@@ -125,245 +98,180 @@ header {
   letter-spacing: -.8px;
 }
 
-.brand-icon {
-  height: 42px;
-  width: 42px;
+.brand-mark {
+  width: 40px;
+  height: 40px;
   display: grid;
   place-items: center;
   border-radius: 14px;
-  color: white;
-  background: linear-gradient(135deg, #8b5cf6, #ec4899);
-  box-shadow: 0 5px 25px #8b5cf644;
-  font-size: 23px;
-}
-
-.brand span:last-child {
-  background: linear-gradient(90deg, #a78bfa, #f472b6);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #0a0c18;
+  background: linear-gradient(135deg, #9581ff, #5ce2d0);
+  font-weight: 950;
+  font-size: 22px;
+  box-shadow: 0 0 28px rgba(139, 120, 255, .18);
 }
 
 .nav-actions {
   display: flex;
-  align-items: center;
-  gap: 9px;
+  gap: 8px;
 }
 
-.small-btn {
-  border: 1px solid var(--border);
+.glass-btn {
+  padding: 9px 12px;
   color: var(--text);
   background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 10px 13px;
-  transition: .2s;
-}
-
-.small-btn:hover {
-  border-color: var(--primary);
-  transform: translateY(-1px);
+  backdrop-filter: blur(15px);
 }
 
 /* Hero */
 
 .hero {
-  padding: 75px 0 35px;
-  text-align: center;
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  background: var(--card);
-  padding: 8px 15px;
-  font-size: 12px;
-  color: var(--muted);
-  margin-bottom: 23px;
-}
-
-.badge-dot {
-  width: 7px;
-  height: 7px;
-  background: #34d399;
-  border-radius: 50%;
-  box-shadow: 0 0 12px #34d399;
+  padding: 64px 0 28px;
 }
 
 .hero h1 {
-  font-size: clamp(36px, 7vw, 67px);
-  line-height: 1.12;
-  letter-spacing: -2px;
+  max-width: 950px;
+  font-size: clamp(43px, 9vw, 88px);
+  line-height: 1.04;
+  letter-spacing: -5px;
   font-weight: 850;
+  margin-bottom: 28px;
+}
+
+.hero > p {
   max-width: 800px;
-  margin: 0 auto 20px;
-}
-
-.gradient-text {
-  background: linear-gradient(100deg, #a78bfa 10%, #ec4899 55%, #60a5fa 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.hero p {
+  font-size: clamp(19px, 3.4vw, 29px);
+  line-height: 1.7;
   color: var(--muted);
-  max-width: 600px;
-  line-height: 1.8;
-  font-size: 15px;
-  margin: 0 auto;
 }
 
-/* Main panel */
-
-.main-card {
-  max-width: 790px;
-  margin: 25px auto 0;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 25px;
-  padding: 27px;
-  box-shadow: var(--shadow);
-}
-
-.section-title {
-  font-size: 18px;
-  font-weight: 750;
-  margin-bottom: 7px;
-}
-
-.section-subtitle {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.6;
-  margin-bottom: 22px;
-}
-
-/* Platforms */
-
-.platform-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 11px;
-  margin-bottom: 25px;
-}
-
-.platform {
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  background: var(--card2);
-  color: var(--text);
-  padding: 16px 7px;
-  min-height: 103px;
-  display: flex;
-  flex-direction: column;
+.eyebrow {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 9px;
-  transition: .2s;
-}
-
-.platform:hover {
-  border-color: var(--primary);
-  transform: translateY(-3px);
-}
-
-.platform.active {
-  border-color: var(--primary);
-  background: rgba(139,92,246,.13);
-  box-shadow: inset 0 0 0 1px var(--primary);
-}
-
-.platform-icon {
-  font-size: 27px;
-  line-height: 1;
-}
-
-.platform-name {
+  color: var(--cyan);
+  border: 1px solid var(--border);
+  background: rgba(23, 26, 47, .58);
+  border-radius: 100px;
+  padding: 8px 13px;
   font-size: 12px;
-  font-weight: 650;
+  margin-bottom: 24px;
 }
 
-/* Input */
+.dot {
+  width: 7px;
+  height: 7px;
+  background: var(--cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--cyan);
+}
+
+/* Main glass panel */
+
+.panel {
+  border: 1px solid var(--border);
+  background: linear-gradient(145deg, rgba(27, 30, 54, .86), rgba(16, 18, 34, .79));
+  border-radius: 30px;
+  padding: 27px;
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .17);
+}
+
+.panel h2 {
+  font-size: 21px;
+  margin-bottom: 16px;
+}
 
 .input-label {
   display: block;
-  font-size: 13px;
   font-weight: 700;
-  margin-bottom: 10px;
+  color: #d5d5ea;
+  margin-bottom: 12px;
 }
 
-.input-wrap {
+.input-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  background: var(--bg);
-  padding: 7px;
+  background: rgba(5, 7, 16, .78);
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 24px;
+  overflow: hidden;
   transition: .2s;
 }
 
-.input-wrap:focus-within {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(139,92,246,.12);
+.input-row:focus-within {
+  border-color: rgba(139,120,255,.7);
+  box-shadow: 0 0 0 3px rgba(139,120,255,.1);
 }
 
-.input-wrap input {
+.input-row input {
   width: 100%;
   min-width: 0;
   border: none;
   outline: none;
   background: transparent;
-  color: var(--text);
-  padding: 12px 9px;
-  font-size: 14px;
+  color: white;
+  padding: 22px 24px;
+  font-size: 18px;
 }
 
-.input-wrap input::placeholder {
-  color: var(--muted);
+.input-row input::placeholder {
+  color: #777b91;
 }
 
 .clear-btn {
-  border: none;
-  background: transparent;
   color: var(--muted);
-  padding: 10px;
+  background: transparent;
+  border: 0;
+  padding: 12px;
 }
 
 .primary-btn {
+  display: block;
   width: 100%;
-  border: none;
-  border-radius: 14px;
-  margin-top: 14px;
-  padding: 16px;
-  background: linear-gradient(100deg, #7c3aed, #c026d3, #ec4899);
-  color: white;
+  margin-top: 15px;
+  padding: 19px 20px;
+  color: #101324;
+  font-size: 19px;
   font-weight: 800;
-  font-size: 15px;
-  box-shadow: 0 8px 25px rgba(139,92,246,.20);
-  transition: .2s;
+  background: linear-gradient(105deg, #8e79ff, #65bde9, #59dfcf);
+  border: 0;
+  border-radius: 23px;
+  box-shadow: 0 9px 30px rgba(106, 133, 255, .15);
+  transition: transform .2s, box-shadow .2s;
 }
 
 .primary-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(139,92,246,.30);
+  box-shadow: 0 12px 34px rgba(106, 133, 255, .24);
 }
 
-.primary-btn:active {
-  transform: scale(.99);
+.hint {
+  margin-top: 17px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.clipboard-btn {
+  display: inline-block;
+  margin-top: 18px;
+  background: transparent;
+  color: var(--cyan);
+  border: none;
+  font-size: 17px;
+  font-weight: 750;
 }
 
 .status {
   display: none;
-  margin-top: 15px;
-  padding: 13px;
+  margin-top: 17px;
   border: 1px solid var(--border);
-  border-radius: 12px;
-  font-size: 13px;
-  line-height: 1.7;
+  border-radius: 16px;
+  padding: 15px;
+  font-size: 14px;
   overflow-wrap: anywhere;
 }
 
@@ -371,209 +279,392 @@ header {
   display: block;
 }
 
-.status.success {
-  background: rgba(16,185,129,.09);
-  border-color: rgba(16,185,129,.3);
+.status.error {
+  border-color: rgba(255, 100, 120, .35);
+  color: #ffb2c0;
 }
 
-.status.error {
-  background: rgba(239,68,68,.08);
-  border-color: rgba(239,68,68,.3);
+.status.success {
+  border-color: rgba(87, 223, 208, .3);
+  color: var(--cyan);
 }
 
 .status a {
-  color: #a78bfa;
+  display: inline-block;
+  margin-top: 8px;
   text-decoration: underline;
 }
 
-/* Features */
+/* Section headings */
 
-.features {
-  padding: 80px 0 35px;
+.section {
+  padding-top: 86px;
+  scroll-margin-top: 90px;
 }
 
-.center-heading {
-  text-align: center;
-  margin-bottom: 35px;
+.section-heading {
+  margin-bottom: 25px;
 }
 
-.center-heading h2 {
-  font-size: clamp(25px, 5vw, 36px);
-  margin-bottom: 12px;
-  letter-spacing: -.7px;
+.section-heading h2 {
+  font-size: clamp(27px, 5vw, 39px);
+  letter-spacing: -1.6px;
+  line-height: 1.2;
+  margin-bottom: 9px;
 }
 
-.center-heading p {
+.section-heading p {
   color: var(--muted);
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: 16px;
 }
 
-.feature-grid {
+/* Platform cards */
+
+.platform-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 }
 
-.feature-card {
-  padding: 23px;
+.platform-card {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  text-align: left;
+  width: 100%;
+  min-width: 0;
+  color: var(--text);
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 19px;
-  transition: .2s;
+  border-radius: 27px;
+  padding: 22px;
+  backdrop-filter: blur(20px);
+  transition: transform .2s, border-color .2s, background .2s;
 }
 
-.feature-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(139,92,246,.55);
+.platform-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(139,120,255,.55);
 }
 
-.feature-icon {
-  width: 47px;
-  height: 47px;
+.platform-card.active {
+  border-color: var(--cyan);
+  background: rgba(79, 208, 201, .08);
+  box-shadow: inset 0 0 0 1px rgba(87,223,208,.1);
+}
+
+.logo-circle {
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
   display: grid;
   place-items: center;
-  border-radius: 14px;
-  background: rgba(139,92,246,.14);
+  border-radius: 50%;
+  background: rgba(24, 27, 50, .95);
+  border: 1px solid rgba(193,196,255,.16);
+  box-shadow: inset 0 0 15px rgba(255,255,255,.025);
+  overflow: hidden;
+}
+
+.logo-circle img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.platform-card.active .logo-circle {
+  border-color: var(--cyan);
+  box-shadow: 0 0 18px rgba(87,223,208,.12);
+}
+
+.platform-copy {
+  min-width: 0;
+}
+
+.platform-copy strong {
+  display: block;
+  font-size: 19px;
+  line-height: 1.3;
+  margin-bottom: 5px;
+}
+
+.platform-copy span {
+  display: block;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Info cards */
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.info-card {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--card);
+  backdrop-filter: blur(18px);
+  transition: transform .2s, border-color .2s;
+}
+
+.info-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(87,223,208,.35);
+}
+
+.info-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(139,120,255,.12);
   font-size: 23px;
   margin-bottom: 17px;
 }
 
-.feature-card h3 {
-  font-size: 16px;
+.info-card h3 {
+  font-size: 17px;
   margin-bottom: 9px;
 }
 
-.feature-card p {
+.info-card p {
   color: var(--muted);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.8;
 }
 
-/* Recent links */
+/* How it works */
 
-.history-section {
-  padding: 35px 0 60px;
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
 }
 
-.history-box {
-  border: 1px solid var(--border);
-  border-radius: 20px;
+.step-card {
+  padding: 24px;
   background: var(--card);
-  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
 }
 
-.history-header {
+.step-number {
+  color: var(--cyan);
+  font-size: 29px;
+  font-weight: 850;
+  margin-bottom: 13px;
+}
+
+.step-card h3 {
+  margin-bottom: 9px;
+  font-size: 17px;
+}
+
+.step-card p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* Saved links */
+
+.saved-box {
+  padding: 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 26px;
+  backdrop-filter: blur(20px);
+}
+
+.saved-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
-  margin-bottom: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 19px;
 }
 
-.history-header h2 {
-  font-size: 19px;
+.saved-header h2 {
+  font-size: 23px;
 }
 
-.history-actions {
+.saved-actions {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-.text-btn {
+.outline-btn {
+  color: var(--muted);
   background: transparent;
   border: 1px solid var(--border);
-  color: var(--muted);
-  padding: 8px 11px;
-  border-radius: 10px;
-  font-size: 12px;
+  border-radius: 12px;
+  padding: 9px 12px;
+  font-size: 13px;
 }
 
-.text-btn:hover {
+.outline-btn:hover {
   color: var(--text);
-  border-color: var(--primary);
+  border-color: var(--cyan);
 }
 
-.history-list {
+.saved-list {
   display: grid;
-  gap: 10px;
+  gap: 11px;
 }
 
-.history-item {
+.saved-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  padding: 15px;
+  background: rgba(5,7,16,.35);
   border: 1px solid var(--border);
-  border-radius: 13px;
-  padding: 13px;
-  background: var(--card2);
+  border-radius: 16px;
 }
 
-.history-info {
+.saved-info {
   min-width: 0;
 }
 
-.history-platform {
-  font-size: 12px;
-  color: #a78bfa;
+.saved-name {
   font-weight: 750;
+  color: var(--cyan);
+  font-size: 13px;
   margin-bottom: 5px;
 }
 
-.history-url {
+.saved-url {
   color: var(--muted);
   font-size: 12px;
   overflow-wrap: anywhere;
 }
 
-.history-controls {
+.saved-controls {
   display: flex;
-  gap: 7px;
+  gap: 6px;
   flex-shrink: 0;
 }
 
 .icon-btn {
-  background: var(--card);
-  border: 1px solid var(--border);
+  min-width: 37px;
+  min-height: 37px;
   color: var(--text);
-  border-radius: 9px;
-  min-width: 35px;
-  min-height: 35px;
-  padding: 6px;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 11px;
 }
 
-.icon-btn:hover {
-  border-color: var(--primary);
-}
-
-.empty-state {
+.empty {
   text-align: center;
   color: var(--muted);
   padding: 25px 10px;
-  font-size: 13px;
+  font-size: 14px;
+}
+
+/* FAQ */
+
+.faq-list {
+  display: grid;
+  gap: 12px;
+}
+
+details {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 19px;
+  padding: 19px 21px;
+  backdrop-filter: blur(18px);
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 750;
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::after {
+  content: "+";
+  float: right;
+  color: var(--cyan);
+  font-size: 22px;
+  line-height: 1;
+}
+
+details[open] summary::after {
+  content: "−";
+}
+
+details p {
+  padding-top: 13px;
+  color: var(--muted);
   line-height: 1.8;
+  font-size: 14px;
+}
+
+/* Privacy */
+
+.privacy-card {
+  padding: 26px;
+  border-radius: 25px;
+  border: 1px solid var(--border);
+  background: linear-gradient(120deg, rgba(139,120,255,.09), rgba(87,223,208,.055));
+}
+
+.privacy-card h3 {
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+.privacy-card p {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 14px;
+}
+
+.privacy-card button {
+  margin-top: 16px;
 }
 
 /* Footer */
 
 footer {
+  margin-top: 85px;
+  padding: 29px 0 20px;
   border-top: 1px solid var(--border);
-  padding: 25px 0 15px;
-  text-align: center;
+  background: rgba(5,7,15,.45);
 }
 
 .footer-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  text-align: center;
+}
+
+.footer-brand {
+  font-size: 19px;
+  font-weight: 850;
 }
 
 .footer-note {
-  font-size: 12px;
   color: var(--muted);
+  font-size: 13px;
   line-height: 1.8;
 }
 
@@ -582,140 +673,182 @@ footer {
   justify-content: center;
   gap: 18px;
   flex-wrap: wrap;
-  margin: 4px 0;
 }
 
+.footer-links a,
 .footer-links button {
-  border: none;
-  background: transparent;
   color: var(--muted);
-  font-size: 12px;
+  background: none;
+  border: none;
+  font-size: 13px;
 }
 
+.footer-links a:hover,
 .footer-links button:hover {
-  color: var(--text);
+  color: var(--cyan);
 }
 
-/* Stylish signature */
-
-.footer-signature {
-  text-align: center;
-  font-family: cursive;
-  font-size: 29px;
-  font-weight: bold;
-  letter-spacing: 2px;
-  margin: 10px 0 5px;
-  background: linear-gradient(90deg, #a78bfa, #ec4899, #60a5fa);
+.signature {
+  margin-top: 9px;
+  font-family: "Brush Script MT", "Segoe Script", cursive;
+  font-size: 36px;
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: 1px;
+  background: linear-gradient(100deg, #a294ff, #85c9ff, #63e6d2);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 0 12px rgba(139,92,246,.20));
-  animation: signatureGlow 3s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 10px rgba(105,160,255,.18));
 }
 
-@keyframes signatureGlow {
-  from {
-    filter: drop-shadow(0 0 4px rgba(139,92,246,.15));
+/* Light mode */
+
+body.light {
+  --bg: #eef0fa;
+  --card: rgba(255,255,255,.73);
+  --card2: rgba(255,255,255,.9);
+  --text: #191b2b;
+  --muted: #686d85;
+  --border: rgba(65,70,120,.15);
+}
+
+body.light header {
+  background: rgba(238,240,250,.78);
+}
+
+body.light .panel {
+  background: linear-gradient(145deg, rgba(255,255,255,.87), rgba(239,241,255,.78));
+}
+
+body.light .input-row {
+  background: rgba(255,255,255,.75);
+}
+
+body.light .input-row input {
+  color: var(--text);
+}
+
+body.light .saved-item,
+body.light footer {
+  background: rgba(255,255,255,.45);
+}
+
+/* Responsive */
+
+@media (max-width: 700px) {
+  .hero {
+    padding-top: 48px;
   }
-  to {
-    filter: drop-shadow(0 0 13px rgba(236,72,153,.35));
+
+  .hero h1 {
+    letter-spacing: -2.5px;
+  }
+
+  .hero > p {
+    line-height: 1.7;
+  }
+
+  .panel {
+    padding: 20px;
+    border-radius: 26px;
+  }
+
+  .input-row {
+    border-radius: 25px;
+  }
+
+  .input-row input {
+    padding: 19px 17px;
+    font-size: 17px;
+  }
+
+  .primary-btn {
+    border-radius: 22px;
+  }
+
+  .platform-card {
+    padding: 16px 13px;
+    gap: 11px;
+    border-radius: 25px;
+  }
+
+  .logo-circle {
+    width: 56px;
+    height: 56px;
+  }
+
+  .logo-circle img {
+    width: 29px;
+    height: 29px;
+  }
+
+  .platform-copy strong {
+    font-size: 16px;
+  }
+
+  .platform-copy span {
+    font-size: 12px;
+  }
+
+  .info-grid,
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding-top: 70px;
+  }
+
+  .saved-box {
+    padding: 17px;
   }
 }
 
-/* Notice */
-
-.notice {
-  max-width: 790px;
-  margin: 18px auto 0;
-  border: 1px solid var(--border);
-  background: var(--card);
-  color: var(--muted);
-  border-radius: 14px;
-  padding: 15px 17px;
-  font-size: 12px;
-  line-height: 1.8;
-}
-
-/* Mobile */
-
-@media (max-width: 650px) {
-  .nav {
-    min-height: 68px;
+@media (max-width: 390px) {
+  .container {
+    width: 91%;
   }
 
   .brand {
     font-size: 20px;
   }
 
-  .brand-icon {
-    height: 37px;
-    width: 37px;
-    border-radius: 12px;
+  .brand-mark {
+    width: 36px;
+    height: 36px;
   }
 
-  .small-btn {
-    padding: 9px 10px;
+  .glass-btn {
+    padding: 8px 10px;
     font-size: 12px;
   }
 
-  .hero {
-    padding-top: 55px;
-  }
-
-  .hero h1 {
-    letter-spacing: -1.3px;
-  }
-
-  .main-card {
-    padding: 18px;
-    border-radius: 20px;
-  }
-
   .platform-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 9px;
+    gap: 10px;
   }
 
-  .platform {
-    min-height: 90px;
-    border-radius: 13px;
-  }
-
-  .platform-icon {
-    font-size: 24px;
-  }
-
-  .feature-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .features {
-    padding-top: 60px;
-  }
-
-  .history-box {
+  .platform-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
     padding: 15px;
   }
 
-  .history-header {
-    align-items: flex-start;
-    flex-direction: column;
+  .logo-circle {
+    width: 52px;
+    height: 52px;
   }
 
-  .history-item {
-    align-items: flex-start;
-  }
-
-  .history-controls {
-    flex-direction: column;
+  .platform-copy strong {
+    font-size: 15px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
-    animation-duration: .01ms !important;
-    transition-duration: .01ms !important;
     scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
   }
 }
 </style>
@@ -723,315 +856,382 @@ footer {
 
 <body>
 
-<div class="background-glow">
-  <div class="glow one"></div>
-  <div class="glow two"></div>
-</div>
-
 <header>
   <div class="container nav">
-
-    <a class="brand" href="#home" aria-label="Zuvnelo home">
-      <span class="brand-icon">Z</span>
-      <span>Zuvnelo</span>
+    <a href="#home" class="brand" aria-label="Zuvnelo home">
+      <span class="brand-mark">Z</span>
+      <span class="gradient">Zuvnelo</span>
     </a>
 
     <div class="nav-actions">
-      <button class="small-btn" id="languageBtn" type="button">
-        हिन्दी
-      </button>
-
-      <button class="small-btn" id="themeBtn" type="button"
-        aria-label="Toggle colour theme">
-        ☀️
-      </button>
+      <button class="glass-btn" id="languageBtn" type="button">हिन्दी</button>
+      <button class="glass-btn" id="themeBtn" type="button" aria-label="Change theme">☀️</button>
     </div>
-
   </div>
 </header>
 
 <main id="home">
 
-  <section class="hero container">
-
-    <div class="badge">
-      <span class="badge-dot"></span>
-      <span data-en="Your digital space, simplified"
-        data-hi="आपकी डिजिटल दुनिया, अब आसान">
-        Your digital space, simplified
+  <!-- 1. Hero -->
+  <section class="container hero">
+    <div class="eyebrow">
+      <span class="dot"></span>
+      <span data-en="A calm space for your social links"
+        data-hi="आपके सोशल लिंक के लिए एक शांत जगह">
+        A calm space for your social links
       </span>
     </div>
 
-    <h1>
-      <span data-en="One link." data-hi="एक लिंक।">One link.</span>
-      <br>
-      <span class="gradient-text"
-        data-en="A simpler experience."
-        data-hi="एक आसान अनुभव।">
-        A simpler experience.
-      </span>
+    <h1 class="gradient"
+      data-en="One calm space."
+      data-hi="एक सुकून भरी जगह।">
+      One calm space.
     </h1>
 
-    <p data-en="Choose your platform, enter a link, and manage your recent links in one clean and modern space."
-       data-hi="अपना प्लेटफॉर्म चुनें, लिंक डालें और अपने हाल के लिंक को एक साफ-सुथरी जगह पर मैनेज करें।">
-      Choose your platform, enter a link, and manage your recent links in one clean and modern space.
+    <p data-en="A clean, simple workspace to organize social links, save favourites, and keep your recent links close."
+       data-hi="सोशल लिंक व्यवस्थित करने, पसंदीदा लिंक सेव करने और हाल के लिंक पास रखने के लिए एक साफ और आसान जगह।">
+      A clean, simple workspace to organize social links, save favourites, and keep your recent links close.
     </p>
-
   </section>
 
-  <section class="container">
-
-    <div class="main-card">
-
-      <h2 class="section-title"
-        data-en="Choose your platform"
-        data-hi="अपना प्लेटफॉर्म चुनें">
-        Choose your platform
+  <!-- 2. Link checker -->
+  <section class="container" id="link-tool">
+    <div class="panel">
+      <h2 data-en="Paste a public social-media link"
+        data-hi="सोशल मीडिया का लिंक डालें">
+        Paste a public social-media link
       </h2>
-
-      <p class="section-subtitle"
-        data-en="Select the platform for your link."
-        data-hi="अपने लिंक के लिए प्लेटफॉर्म चुनें।">
-        Select the platform for your link.
-      </p>
-
-      <div class="platform-grid" id="platformGrid">
-
-        <button class="platform active" type="button"
-          data-platform="Instagram">
-          <span class="platform-icon">📸</span>
-          <span class="platform-name">Instagram</span>
-        </button>
-
-        <button class="platform" type="button"
-          data-platform="YouTube">
-          <span class="platform-icon">▶️</span>
-          <span class="platform-name">YouTube</span>
-        </button>
-
-        <button class="platform" type="button"
-          data-platform="Facebook">
-          <span class="platform-icon">🌐</span>
-          <span class="platform-name">Facebook</span>
-        </button>
-
-        <button class="platform" type="button"
-          data-platform="TikTok">
-          <span class="platform-icon">🎵</span>
-          <span class="platform-name">TikTok</span>
-        </button>
-
-        <button class="platform" type="button"
-          data-platform="X">
-          <span class="platform-icon">𝕏</span>
-          <span class="platform-name">X / Twitter</span>
-        </button>
-
-        <button class="platform" type="button"
-          data-platform="Pinterest">
-          <span class="platform-icon">📌</span>
-          <span class="platform-name">Pinterest</span>
-        </button>
-
-        <button class="platform" type="button"
-          data-platform="Reddit">
-          <span class="platform-icon">👽</span>
-          <span class="platform-name">Reddit</span>
-        </button>
-
-        <button class="platform" type="button"
-          data-platform="Snapchat">
-          <span class="platform-icon">👻</span>
-          <span class="platform-name">Snapchat</span>
-        </button>
-
-      </div>
 
       <form id="linkForm">
-
         <label class="input-label" for="mediaUrl"
-          data-en="Paste your link"
-          data-hi="अपना लिंक यहाँ डालें">
-          Paste your link
+          data-en="Your link"
+          data-hi="आपका लिंक">
+          Your link
         </label>
 
-        <div class="input-wrap">
-
+        <div class="input-row">
           <input
-            type="url"
             id="mediaUrl"
-            placeholder="https://..."
-            autocomplete="url"
+            type="url"
             inputmode="url"
+            autocomplete="url"
+            placeholder="https://www.youtube.com/..."
             required
           >
-
-          <button type="button" class="clear-btn" id="clearBtn"
-            aria-label="Clear link">
-            ✕
-          </button>
-
+          <button type="button" class="clear-btn" id="clearBtn" aria-label="Clear">✕</button>
         </div>
 
-        <button class="primary-btn" type="submit"
-          data-en="Continue →"
-          data-hi="आगे बढ़ें →">
-          Continue →
+        <button class="primary-btn" type="submit">
+          <span data-en="Check link ↗" data-hi="लिंक चेक करें ↗">Check link ↗</span>
         </button>
-
-        <div class="status" id="statusBox" role="status"
-          aria-live="polite"></div>
-
       </form>
 
+      <p class="hint"
+        data-en="Choose a platform below or let Zuvnelo detect it."
+        data-hi="नीचे प्लेटफॉर्म चुनें या Zuvnelo को पहचानने दें।">
+        Choose a platform below or let Zuvnelo detect it.
+      </p>
+
+      <button class="clipboard-btn" type="button" id="pasteBtn"
+        data-en="Paste from clipboard"
+        data-hi="क्लिपबोर्ड से पेस्ट करें">
+        Paste from clipboard
+      </button>
+
+      <div class="status" id="statusBox" role="status" aria-live="polite"></div>
     </div>
-
-    <div class="notice">
-      <strong data-en="Please note:"
-        data-hi="ध्यान दें:">Please note:</strong>
-
-      <span data-en="This version checks links and saves them in your browser. A working media-download service is not connected yet. Only use content you have permission to access or download."
-        data-hi="यह वर्जन लिंक चेक करता है और उन्हें आपके ब्राउज़र में सेव करता है। अभी असली मीडिया डाउनलोड सर्विस कनेक्ट नहीं है। केवल उसी कंटेंट का इस्तेमाल करें जिसे एक्सेस या डाउनलोड करने की अनुमति हो।">
-        This version checks links and saves them in your browser. A working media-download service is not connected yet. Only use content you have permission to access or download.
-      </span>
-    </div>
-
   </section>
 
-  <section class="features container">
-
-    <div class="center-heading">
-      <h2>
-        <span data-en="Made for simplicity"
-          data-hi="आसान इस्तेमाल के लिए">
-          Made for simplicity
-        </span>
-      </h2>
-
-      <p data-en="A clean experience with useful features."
-        data-hi="ज़रूरी फीचर्स के साथ एक साफ-सुथरा अनुभव।">
-        A clean experience with useful features.
+  <!-- 3. Platforms -->
+  <section class="container section" id="platforms">
+    <div class="section-heading">
+      <h2 data-en="Choose a platform" data-hi="प्लेटफॉर्म चुनें">Choose a platform</h2>
+      <p data-en="Pick one to check a link for that service."
+        data-hi="किसी प्लेटफॉर्म का लिंक चेक करने के लिए उसे चुनें।">
+        Pick one to check a link for that service.
       </p>
     </div>
 
-    <div class="feature-grid">
+    <div class="platform-grid" id="platformGrid">
 
-      <article class="feature-card">
-        <div class="feature-icon">⚡</div>
-        <h3 data-en="Simple & Fast"
-          data-hi="आसान और तेज़">
-          Simple & Fast
-        </h3>
-        <p data-en="A lightweight interface designed to work on mobile and desktop."
-          data-hi="मोबाइल और कंप्यूटर पर इस्तेमाल के लिए हल्का और आसान इंटरफेस।">
-          A lightweight interface designed to work on mobile and desktop.
-        </p>
-      </article>
+      <button class="platform-card active" type="button" data-platform="Instagram">
+        <span class="logo-circle">
+          <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram logo">
+        </span>
+        <span class="platform-copy">
+          <strong>Instagram</strong>
+          <span>Reels · Posts · Profiles</span>
+        </span>
+      </button>
 
-      <article class="feature-card">
-        <div class="feature-icon">🔒</div>
-        <h3 data-en="Browser Storage"
-          data-hi="ब्राउज़र में सेव">
-          Browser Storage
-        </h3>
-        <p data-en="Your recent links and favourites are stored locally in this browser."
-          data-hi="आपके हाल के लिंक और पसंदीदा लिंक इसी ब्राउज़र में सेव होते हैं।">
-          Your recent links and favourites are stored locally in this browser.
-        </p>
-      </article>
+      <button class="platform-card" type="button" data-platform="YouTube">
+        <span class="logo-circle">
+          <img src="https://cdn.simpleicons.org/youtube/FF0033" alt="YouTube logo">
+        </span>
+        <span class="platform-copy">
+          <strong>YouTube</strong>
+          <span>Videos · Shorts · Channels</span>
+        </span>
+      </button>
 
-      <article class="feature-card">
-        <div class="feature-icon">🎨</div>
-        <h3 data-en="Your Style"
-          data-hi="आपकी पसंद">
-          Your Style
-        </h3>
-        <p data-en="Switch between light and dark themes and choose your language."
-          data-hi="लाइट और डार्क थीम बदलें और अपनी भाषा चुनें।">
-          Switch between light and dark themes and choose your language.
-        </p>
-      </article>
+      <button class="platform-card" type="button" data-platform="Facebook">
+        <span class="logo-circle">
+          <img src="https://cdn.simpleicons.org/facebook/0866FF" alt="Facebook logo">
+        </span>
+        <span class="platform-copy">
+          <strong>Facebook</strong>
+          <span>Posts · Videos · Pages</span>
+        </span>
+      </button>
+
+      <button class="platform-card" type="button" data-platform="Snapchat">
+        <span class="logo-circle">
+          <img src="https://cdn.simpleicons.org/snapchat/FFFFFF" alt="Snapchat logo">
+        </span>
+        <span class="platform-copy">
+          <strong>Snapchat</strong>
+          <span>Public profiles · Stories</span>
+        </span>
+      </button>
+
+      <button class="platform-card" type="button" data-platform="TikTok">
+        <span class="logo-circle">
+          <img src="https://cdn.simpleicons.org/tiktok/FFFFFF" alt="TikTok logo">
+        </span>
+        <span class="platform-copy">
+          <strong>TikTok</strong>
+          <span>Videos · Profiles</span>
+        </span>
+      </button>
+
+      <button class="platform-card" type="button" data-platform="X">
+        <span class="logo-circle">
+          <img src="https://cdn.simpleicons.org/x/FFFFFF" alt="X logo">
+        </span>
+        <span class="platform-copy">
+          <strong>X</strong>
+          <span>Posts · Profiles</span>
+        </span>
+      </button>
+
+      <button class="platform-card" type="button" data-platform="Reddit">
+        <span class="logo-circle">
+          <img src="https://cdn.simpleicons.org/reddit/FF4500" alt="Reddit logo">
+        </span>
+        <span class="platform-copy">
+          <strong>Reddit</strong>
+          <span>Posts · Communities</span>
+        </span>
+      </button>
+
+      <button class="platform-card" type="button" data-platform="Pinterest">
+        <span class="logo-circle">
+          <img src="https://cdn.simpleicons.org/pinterest/BD081C" alt="Pinterest logo">
+        </span>
+        <span class="platform-copy">
+          <strong>Pinterest</strong>
+          <span>Pins · Ideas · Boards</span>
+        </span>
+      </button>
 
     </div>
-
   </section>
 
-  <section class="history-section container">
-
-    <div class="history-box">
-
-      <div class="history-header">
-
-        <h2 data-en="Your saved links"
-          data-hi="आपके सेव किए गए लिंक">
-          Your saved links
-        </h2>
-
-        <div class="history-actions">
-
-          <button type="button" class="text-btn" id="showAllBtn"
-            data-en="Recent"
-            data-hi="हाल के">
-            Recent
-          </button>
-
-          <button type="button" class="text-btn" id="showFavBtn"
-            data-en="★ Favourites"
-            data-hi="★ पसंदीदा">
-            ★ Favourites
-          </button>
-
-          <button type="button" class="text-btn" id="clearHistoryBtn"
-            data-en="Clear all"
-            data-hi="सब हटाएँ">
-            Clear all
-          </button>
-
-        </div>
-
-      </div>
-
-      <div class="history-list" id="historyList"></div>
-
+  <!-- 4. Features -->
+  <section class="container section" id="features">
+    <div class="section-heading">
+      <h2 data-en="A little more organized." data-hi="अब सब कुछ व्यवस्थित।">
+        A little more organized.
+      </h2>
+      <p data-en="Small features for a calmer browsing experience."
+        data-hi="आसान इस्तेमाल के लिए छोटे लेकिन उपयोगी फीचर्स।">
+        Small features for a calmer browsing experience.
+      </p>
     </div>
 
+    <div class="info-grid">
+      <article class="info-card">
+        <div class="info-icon">🔗</div>
+        <h3 data-en="Quick link checks" data-hi="लिंक जल्दी चेक करें">Quick link checks</h3>
+        <p data-en="Identify supported platform links and open the original page."
+          data-hi="सपोर्टेड प्लेटफॉर्म के लिंक पहचानें और असली पेज खोलें।">
+          Identify supported platform links and open the original page.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <div class="info-icon">⭐</div>
+        <h3 data-en="Saved favourites" data-hi="पसंदीदा लिंक">Saved favourites</h3>
+        <p data-en="Keep useful links close and revisit them from your saved list."
+          data-hi="ज़रूरी लिंक सेव करें और अपनी लिस्ट से दोबारा खोलें।">
+          Keep useful links close and revisit them from your saved list.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <div class="info-icon">🪟</div>
+        <h3 data-en="Calm glass design" data-hi="ग्लास डिजाइन">Calm glass design</h3>
+        <p data-en="Translucent panels, soft borders, and a purple-to-cyan colour palette."
+          data-hi="पारदर्शी कार्ड, हल्के बॉर्डर और पर्पल से सायन तक के रंग।">
+          Translucent panels, soft borders, and a purple-to-cyan colour palette.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 5. How it works -->
+  <section class="container section" id="how-it-works">
+    <div class="section-heading">
+      <h2 data-en="Three simple steps." data-hi="बस तीन आसान स्टेप।">
+        Three simple steps.
+      </h2>
+      <p data-en="Designed to stay simple from start to finish."
+        data-hi="शुरू से आखिर तक आसान इस्तेमाल के लिए।">
+        Designed to stay simple from start to finish.
+      </p>
+    </div>
+
+    <div class="steps">
+      <article class="step-card">
+        <div class="step-number">01</div>
+        <h3 data-en="Choose" data-hi="चुनें">Choose</h3>
+        <p data-en="Select a social platform or let the website detect it from your link."
+          data-hi="सोशल प्लेटफॉर्म चुनें या वेबसाइट को लिंक पहचानने दें।">
+          Select a social platform or let the website detect it from your link.
+        </p>
+      </article>
+
+      <article class="step-card">
+        <div class="step-number">02</div>
+        <h3 data-en="Paste" data-hi="पेस्ट करें">Paste</h3>
+        <p data-en="Add a public link in the input box and check that it matches the platform."
+          data-hi="इनपुट बॉक्स में पब्लिक लिंक डालें और प्लेटफॉर्म से मिलान करें।">
+          Add a public link in the input box and check that it matches the platform.
+        </p>
+      </article>
+
+      <article class="step-card">
+        <div class="step-number">03</div>
+        <h3 data-en="Save or open" data-hi="सेव करें या खोलें">Save or open</h3>
+        <p data-en="Keep it in your recent links or open the original platform page."
+          data-hi="लिंक को हाल की लिस्ट में रखें या असली प्लेटफॉर्म पर खोलें।">
+          Keep it in your recent links or open the original platform page.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 6. Saved links -->
+  <section class="container section" id="saved-links">
+    <div class="saved-box">
+      <div class="saved-header">
+        <h2 data-en="Your links" data-hi="आपके लिंक">Your links</h2>
+        <div class="saved-actions">
+          <button class="outline-btn" type="button" id="recentBtn"
+            data-en="Recent" data-hi="हाल के">Recent</button>
+          <button class="outline-btn" type="button" id="favouritesBtn"
+            data-en="★ Favourites" data-hi="★ पसंदीदा">★ Favourites</button>
+          <button class="outline-btn" type="button" id="clearBtnHistory"
+            data-en="Clear" data-hi="हटाएँ">Clear</button>
+        </div>
+      </div>
+      <div class="saved-list" id="savedList"></div>
+    </div>
+  </section>
+
+  <!-- 7. FAQ -->
+  <section class="container section" id="faq">
+    <div class="section-heading">
+      <h2 data-en="Frequently asked questions" data-hi="अक्सर पूछे जाने वाले सवाल">
+        Frequently asked questions
+      </h2>
+      <p data-en="A few things worth knowing about Zuvnelo."
+        data-hi="Zuvnelo के बारे में कुछ ज़रूरी बातें।">
+        A few things worth knowing about Zuvnelo.
+      </p>
+    </div>
+
+    <div class="faq-list">
+      <details>
+        <summary data-en="What is Zuvnelo?" data-hi="Zuvnelo क्या है?">What is Zuvnelo?</summary>
+        <p data-en="Zuvnelo is a simple workspace for checking, organizing, and saving social-media links."
+          data-hi="Zuvnelo सोशल मीडिया लिंक चेक करने, व्यवस्थित करने और सेव करने की एक आसान जगह है।">
+          Zuvnelo is a simple workspace for checking, organizing, and saving social-media links.
+        </p>
+      </details>
+
+      <details>
+        <summary data-en="Can I download videos and audio right now?"
+          data-hi="क्या अभी वीडियो और ऑडियो डाउनलोड कर सकते हैं?">
+          Can I download videos and audio right now?
+        </summary>
+        <p data-en="Not yet. This version checks links and opens original pages. A compatible download backend has not been connected."
+          data-hi="अभी नहीं। यह वर्जन लिंक चेक करता है और असली पेज खोलता है। डाउनलोड के लिए अलग बैकएंड अभी कनेक्ट नहीं है।">
+          Not yet. This version checks links and opens original pages. A compatible download backend has not been connected.
+        </p>
+      </details>
+
+      <details>
+        <summary data-en="Where are my saved links stored?"
+          data-hi="मेरे सेव किए गए लिंक कहाँ रहते हैं?">
+          Where are my saved links stored?
+        </summary>
+        <p data-en="Recent links and favourites are stored in local storage in the browser on your device."
+          data-hi="हाल के लिंक और पसंदीदा लिंक आपके डिवाइस के ब्राउज़र में लोकल स्टोरेज में सेव होते हैं।">
+          Recent links and favourites are stored in local storage in the browser on your device.
+        </p>
+      </details>
+
+      <details>
+        <summary data-en="Does Zuvnelo need an account?"
+          data-hi="क्या Zuvnelo के लिए अकाउंट चाहिए?">
+          Does Zuvnelo need an account?
+        </summary>
+        <p data-en="This version does not require a login or signup."
+          data-hi="इस वर्जन में लॉगिन या साइनअप की ज़रूरत नहीं है।">
+          This version does not require a login or signup.
+        </p>
+      </details>
+    </div>
+  </section>
+
+  <!-- 8. Privacy -->
+  <section class="container section" id="privacy">
+    <div class="privacy-card">
+      <h3 data-en="Your space, your links." data-hi="आपकी जगह, आपके लिंक।">
+        Your space, your links.
+      </h3>
+      <p data-en="Zuvnelo stores your recent links and favourites locally in this browser. This static version does not send those saved entries to a Zuvnelo server. External websites you open may have their own privacy policies. Do not save sensitive or private links on a shared device."
+        data-hi="Zuvnelo आपके हाल के और पसंदीदा लिंक इसी ब्राउज़र में सेव करता है। यह स्टैटिक वर्जन सेव की गई जानकारी Zuvnelo सर्वर पर नहीं भेजता। बाहरी वेबसाइटों की अपनी प्राइवेसी नीतियाँ हो सकती हैं। साझा डिवाइस पर निजी लिंक सेव न करें।">
+        Zuvnelo stores your recent links and favourites locally in this browser. This static version does not send those saved entries to a Zuvnelo server. External websites you open may have their own privacy policies. Do not save sensitive or private links on a shared device.
+      </p>
+      <button type="button" class="outline-btn" id="deleteDataBtn"
+        data-en="Delete my saved data" data-hi="मेरा सेव डेटा हटाएँ">
+        Delete my saved data
+      </button>
+    </div>
   </section>
 
 </main>
 
 <footer>
-
   <div class="container footer-inner">
+    <div class="footer-brand gradient">Zuvnelo</div>
 
     <p class="footer-note">
-      © <span id="year"></span> Zuvnelo.
-      <span data-en="Made with care."
-        data-hi="प्यार से बनाया गया।">
-        Made with care.
-      </span>
+      © <span id="year"></span> Zuvnelo ·
+      <span data-en="One calm space." data-hi="एक सुकून भरी जगह।">One calm space.</span>
     </p>
 
     <div class="footer-links">
-
-      <button type="button" id="privacyBtn"
-        data-en="Privacy"
-        data-hi="प्राइवेसी">
-        Privacy
-      </button>
-
-      <button type="button" id="deleteDataBtn"
-        data-en="Delete my local data"
-        data-hi="मेरा सेव डेटा हटाएँ">
-        Delete my local data
-      </button>
-
+      <a href="#home" data-en="Home" data-hi="होम">Home</a>
+      <a href="#features" data-en="Features" data-hi="फीचर्स">Features</a>
+      <a href="#faq">FAQ</a>
+      <a href="#privacy" data-en="Privacy" data-hi="प्राइवेसी">Privacy</a>
     </div>
 
-    <!-- Stylish signature -->
-    <div class="footer-signature">𝓢𝓱𝓾𝓫𝓱</div>
-
+    <div class="signature">𝑺𝒉𝒖𝒃𝒉</div>
   </div>
-
 </footer>
 
 <script>
@@ -1041,171 +1241,173 @@ footer {
   const $ = (selector) => document.querySelector(selector);
   const $$ = (selector) => document.querySelectorAll(selector);
 
-  const platforms = {
-    "Instagram": ["instagram.com", "www.instagram.com"],
-    "YouTube": ["youtube.com", "www.youtube.com", "youtu.be", "m.youtube.com"],
-    "Facebook": ["facebook.com", "www.facebook.com", "fb.watch", "m.facebook.com"],
-    "TikTok": ["tiktok.com", "www.tiktok.com", "vm.tiktok.com", "vt.tiktok.com"],
-    "X": ["x.com", "www.x.com", "twitter.com", "www.twitter.com"],
-    "Pinterest": ["pinterest.com", "www.pinterest.com", "pin.it"],
-    "Reddit": ["reddit.com", "www.reddit.com", "redd.it"],
-    "Snapchat": ["snapchat.com", "www.snapchat.com"]
+  const supported = {
+    Instagram: ["instagram.com"],
+    YouTube: ["youtube.com", "youtu.be"],
+    Facebook: ["facebook.com", "fb.watch"],
+    Snapchat: ["snapchat.com"],
+    TikTok: ["tiktok.com"],
+    X: ["x.com", "twitter.com"],
+    Reddit: ["reddit.com", "redd.it"],
+    Pinterest: ["pinterest.com", "pin.it"]
   };
 
-  const translations = {
+  const words = {
     en: {
-      placeholder: "Paste a valid link...",
-      empty: "Please enter a link first.",
-      invalid: "Please enter a valid link starting with https:// or http://.",
-      wrongPlatform: "This link does not appear to match the selected platform.",
+      empty: "Please paste a link first.",
+      invalid: "Please enter a valid http:// or https:// link.",
+      unsupported: "This link does not match a supported platform.",
+      mismatch: "The selected platform does not match this link. The correct platform has been selected.",
       checked: "Link checked successfully.",
-      service: "The download service is not connected yet. You can open the original link below.",
-      openOriginal: "Open original link ↗",
-      noHistory: "No saved links yet.",
-      noFavourites: "No favourite links yet.",
-      deleteConfirm: "Delete all locally saved links and favourites?",
-      deleted: "Your locally saved data has been deleted.",
-      privacy: "This website version stores recent links and favourites in your browser using local storage. It does not send those saved entries to a server. Links you open may be handled by the relevant external platform. Real media downloading is not enabled in this version.",
-      remove: "Remove",
+      note: "This version checks links but does not download media. Open the original page below.",
+      open: "Open original link ↗",
       copied: "Link copied.",
-      copyError: "Could not copy automatically. Open the link and copy it from your browser.",
-      clearConfirm: "Clear your saved links?",
-      removed: "Saved links cleared.",
-      favourite: "Add to favourites",
-      unfavourite: "Remove from favourites",
+      copyError: "Automatic copying failed. Please copy the link manually.",
+      noRecent: "No recent links yet. Check a link above to get started.",
+      noFavourites: "No favourites yet. Tap ☆ next to a saved link to add one.",
+      clearConfirm: "Clear this list?",
+      deleteConfirm: "Delete all recent links and favourites saved in this browser?",
+      deleted: "Your saved browser data has been deleted.",
+      removed: "List cleared.",
+      fav: "Add to favourites",
+      unfav: "Remove from favourites",
       copy: "Copy link",
-      clearInput: "Please enter a link first."
+      pasteError: "Clipboard access was not allowed. Paste the link into the box manually.",
+      pasteEmpty: "Your clipboard appears to be empty."
     },
     hi: {
-      placeholder: "सही लिंक डालें...",
-      empty: "पहले लिंक डालें।",
-      invalid: "कृपया https:// या http:// से शुरू होने वाला सही लिंक डालें।",
-      wrongPlatform: "यह लिंक चुने गए प्लेटफॉर्म का नहीं लग रहा है।",
+      empty: "पहले लिंक पेस्ट करें।",
+      invalid: "कृपया http:// या https:// वाला सही लिंक डालें।",
+      unsupported: "यह लिंक किसी सपोर्टेड प्लेटफॉर्म का नहीं है।",
+      mismatch: "चुना गया प्लेटफॉर्म इस लिंक से मेल नहीं खाता। सही प्लेटफॉर्म चुन दिया गया है।",
       checked: "लिंक सफलतापूर्वक चेक हो गया।",
-      service: "अभी डाउनलोड सर्विस कनेक्ट नहीं है। आप नीचे दिए लिंक से असली पेज खोल सकते हैं।",
-      openOriginal: "असली लिंक खोलें ↗",
-      noHistory: "अभी कोई लिंक सेव नहीं है।",
-      noFavourites: "अभी कोई पसंदीदा लिंक नहीं है।",
-      deleteConfirm: "क्या आप सभी सेव किए गए लिंक और पसंदीदा लिंक हटाना चाहते हैं?",
-      deleted: "आपका सेव किया गया डेटा हटा दिया गया है।",
-      privacy: "यह वेबसाइट हाल के लिंक और पसंदीदा लिंक आपके ब्राउज़र के लोकल स्टोरेज में रखती है। सेव की गई जानकारी सर्वर पर नहीं भेजी जाती। आपके द्वारा खोले गए लिंक संबंधित बाहरी प्लेटफॉर्म पर जा सकते हैं। इस वर्जन में असली मीडिया डाउनलोड चालू नहीं है।",
-      remove: "हटाएँ",
+      note: "यह वर्जन लिंक चेक करता है, मीडिया डाउनलोड नहीं करता। नीचे असली पेज खोलें।",
+      open: "असली लिंक खोलें ↗",
       copied: "लिंक कॉपी हो गया।",
-      copyError: "लिंक अपने आप कॉपी नहीं हो पाया। उसे खोलकर ब्राउज़र से कॉपी करें।",
-      clearConfirm: "क्या आप सेव किए गए लिंक हटाना चाहते हैं?",
-      removed: "सेव किए गए लिंक हटा दिए गए।",
-      favourite: "पसंदीदा में जोड़ें",
-      unfavourite: "पसंदीदा से हटाएँ",
+      copyError: "लिंक अपने आप कॉपी नहीं हुआ। कृपया मैन्युअली कॉपी करें।",
+      noRecent: "अभी कोई हाल का लिंक नहीं है। शुरू करने के लिए ऊपर लिंक चेक करें।",
+      noFavourites: "अभी कोई पसंदीदा लिंक नहीं है। किसी लिंक के पास ☆ दबाएँ।",
+      clearConfirm: "क्या इस लिस्ट को हटाना चाहते हैं?",
+      deleteConfirm: "क्या इस ब्राउज़र में सेव सभी लिंक और पसंदीदा लिंक हटाने हैं?",
+      deleted: "आपका सेव ब्राउज़र डेटा हटा दिया गया है।",
+      removed: "लिस्ट हटा दी गई।",
+      fav: "पसंदीदा में जोड़ें",
+      unfav: "पसंदीदा से हटाएँ",
       copy: "लिंक कॉपी करें",
-      clearInput: "पहले लिंक डालें।"
+      pasteError: "क्लिपबोर्ड की अनुमति नहीं मिली। लिंक बॉक्स में मैन्युअली पेस्ट करें।",
+      pasteEmpty: "क्लिपबोर्ड खाली लग रहा है।"
     }
   };
 
-  let currentPlatform = "Instagram";
-  let currentLanguage = "en";
-  let showingFavourites = false;
-  let currentStatusUrl = "";
+  let language = "en";
+  let selected = "Instagram";
+  let favouriteMode = false;
+  let recent = load("zuvnelo_recent");
+  let favourites = load("zuvnelo_favourites");
 
-  let history = readStorage("zuvnelo_history");
-  let favourites = readStorage("zuvnelo_favourites");
-
-  function readStorage(key) {
+  function load(key) {
     try {
-      const value = JSON.parse(localStorage.getItem(key) || "[]");
-      return Array.isArray(value) ? value : [];
+      const data = JSON.parse(localStorage.getItem(key) || "[]");
+      return Array.isArray(data) ? data : [];
     } catch {
       return [];
     }
   }
 
-  function saveStorage() {
+  function save() {
     try {
-      localStorage.setItem("zuvnelo_history", JSON.stringify(history));
+      localStorage.setItem("zuvnelo_recent", JSON.stringify(recent));
       localStorage.setItem("zuvnelo_favourites", JSON.stringify(favourites));
     } catch {
-      showStatus(
-        "Browser storage is unavailable. Your links may not be saved.",
-        "error"
-      );
+      show("Browser storage is unavailable.", "error");
     }
   }
 
   function t(key) {
-    return translations[currentLanguage][key] || key;
+    return words[language][key] || key;
   }
 
-  function setStatus(message, type = "success", extraHTML = "") {
+  function show(message, type = "success", url = "") {
     const box = $("#statusBox");
     box.className = "status show " + type;
     box.replaceChildren();
 
-    const messageNode = document.createElement("div");
-    messageNode.textContent = message;
-    box.appendChild(messageNode);
+    const text = document.createElement("div");
+    text.textContent = message;
+    box.appendChild(text);
 
-    if (extraHTML) {
-      const holder = document.createElement("div");
-      holder.style.marginTop = "8px";
-      holder.innerHTML = extraHTML;
-      box.appendChild(holder);
+    if (url) {
+      const link = document.createElement("a");
+      link.href = url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = t("open");
+      box.appendChild(link);
     }
   }
 
-  function showStatus(message, type = "success") {
-    setStatus(message, type);
-  }
-
-  function getHost(url) {
-    try {
-      return new URL(url).hostname.toLowerCase();
-    } catch {
-      return "";
-    }
-  }
-
-  function getMatchingPlatform(url) {
-    const host = getHost(url);
-
-    for (const [platform, hosts] of Object.entries(platforms)) {
-      if (hosts.includes(host)) {
-        return platform;
-      }
-    }
-
-    return null;
-  }
-
-  function isValidURL(value) {
+  function validURL(value) {
     try {
       const url = new URL(value);
-      return url.protocol === "https:" || url.protocol === "http:";
+      return ["http:", "https:"].includes(url.protocol);
     } catch {
       return false;
     }
   }
 
-  function setPlatform(platform) {
-    currentPlatform = platform;
+  function getPlatform(value) {
+    try {
+      const host = new URL(value).hostname.toLowerCase();
+      for (const [name, domains] of Object.entries(supported)) {
+        if (domains.some(domain => host === domain || host.endsWith("." + domain))) {
+          return name;
+        }
+      }
+    } catch {}
+    return null;
+  }
 
-    $$(".platform").forEach((button) => {
-      button.classList.toggle(
-        "active",
-        button.dataset.platform === platform
-      );
+  function selectPlatform(name) {
+    selected = name;
+
+    $$(".platform-card").forEach(button => {
+      button.classList.toggle("active", button.dataset.platform === name);
     });
-
-    const input = $("#mediaUrl");
-    input.placeholder = currentLanguage === "hi"
-      ? platform + " का लिंक डालें..."
-      : "Paste " + platform + " link...";
 
     $("#statusBox").className = "status";
   }
 
-  $$(".platform").forEach((button) => {
+  $$(".platform-card").forEach(button => {
     button.addEventListener("click", () => {
-      setPlatform(button.dataset.platform);
+      selectPlatform(button.dataset.platform);
+      $("#link-tool").scrollIntoView({ behavior: "smooth", block: "center" });
+      $("#mediaUrl").focus({ preventScroll: true });
     });
+  });
+
+  $("#linkForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    const value = $("#mediaUrl").value.trim();
+
+    if (!value) return show(t("empty"), "error");
+    if (!validURL(value)) return show(t("invalid"), "error");
+
+    const platform = getPlatform(value);
+    if (!platform) return show(t("unsupported"), "error");
+
+    if (selected !== platform) {
+      selectPlatform(platform);
+      show(t("mismatch"), "error");
+      return;
+    }
+
+    const item = { url: value, platform, time: Date.now() };
+    recent = [item, ...recent.filter(x => x.url !== value)].slice(0, 40);
+    save();
+    favouriteMode = false;
+    renderSaved();
+    show(t("checked") + " " + t("note"), "success", value);
   });
 
   $("#clearBtn").addEventListener("click", () => {
@@ -1214,126 +1416,78 @@ footer {
     $("#mediaUrl").focus();
   });
 
-  $("#linkForm").addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    const input = $("#mediaUrl");
-    const value = input.value.trim();
-
-    if (!value) {
-      showStatus(t("empty"), "error");
-      input.focus();
-      return;
+  $("#pasteBtn").addEventListener("click", async () => {
+    try {
+      const value = await navigator.clipboard.readText();
+      if (!value.trim()) return show(t("pasteEmpty"), "error");
+      $("#mediaUrl").value = value.trim();
+      $("#mediaUrl").focus();
+    } catch {
+      show(t("pasteError"), "error");
     }
-
-    if (!isValidURL(value)) {
-      showStatus(t("invalid"), "error");
-      return;
-    }
-
-    const matched = getMatchingPlatform(value);
-
-    if (!matched) {
-      showStatus(
-        currentLanguage === "hi"
-          ? "यह लिंक समर्थित प्लेटफॉर्म में से किसी का नहीं लग रहा है। लिंक चेक करें।"
-          : "This link does not match a supported platform.",
-        "error"
-      );
-      return;
-    }
-
-    if (matched !== currentPlatform) {
-      showStatus(t("wrongPlatform"), "error");
-      setPlatform(matched);
-      return;
-    }
-
-    currentStatusUrl = value;
-
-    const entry = {
-      url: value,
-      platform: matched,
-      time: Date.now()
-    };
-
-    history = [
-      entry,
-      ...history.filter(item => item.url !== value)
-    ].slice(0, 30);
-
-    saveStorage();
-    renderHistory();
-
-    setStatus(
-      t("checked") + " " + t("service"),
-      "success",
-      '<a href="' + escapeAttribute(value) +
-      '" target="_blank" rel="noopener noreferrer">' +
-      t("openOriginal") + '</a>'
-    );
   });
 
-  function escapeHTML(value) {
-    return String(value).replace(/[&<>"']/g, (character) => ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;"
-    })[character]);
+  function toggleFavourite(item) {
+    if (favourites.some(x => x.url === item.url)) {
+      favourites = favourites.filter(x => x.url !== item.url);
+    } else {
+      favourites = [item, ...favourites].slice(0, 40);
+    }
+
+    save();
+    renderSaved();
   }
 
-  function escapeAttribute(value) {
-    return escapeHTML(value);
+  async function copyLink(url) {
+    try {
+      await navigator.clipboard.writeText(url);
+      show(t("copied"), "success");
+    } catch {
+      show(t("copyError"), "error");
+    }
   }
 
-  function renderHistory() {
-    const list = $("#historyList");
+  function renderSaved() {
+    const list = $("#savedList");
     list.replaceChildren();
 
-    const items = showingFavourites ? favourites : history;
+    const items = favouriteMode ? favourites : recent;
 
     if (!items.length) {
       const empty = document.createElement("div");
-      empty.className = "empty-state";
-      empty.textContent = showingFavourites
-        ? t("noFavourites")
-        : t("noHistory");
-
+      empty.className = "empty";
+      empty.textContent = favouriteMode ? t("noFavourites") : t("noRecent");
       list.appendChild(empty);
       return;
     }
 
-    items.forEach((item) => {
+    items.forEach(item => {
       const row = document.createElement("div");
-      row.className = "history-item";
+      row.className = "saved-item";
 
       const info = document.createElement("div");
-      info.className = "history-info";
+      info.className = "saved-info";
 
-      const platform = document.createElement("div");
-      platform.className = "history-platform";
-      platform.textContent = item.platform;
+      const name = document.createElement("div");
+      name.className = "saved-name";
+      name.textContent = item.platform;
 
       const url = document.createElement("div");
-      url.className = "history-url";
+      url.className = "saved-url";
       url.textContent = item.url;
 
-      info.append(platform, url);
+      info.append(name, url);
 
       const controls = document.createElement("div");
-      controls.className = "history-controls";
+      controls.className = "saved-controls";
 
       const open = document.createElement("button");
       open.className = "icon-btn";
       open.type = "button";
       open.textContent = "↗";
-      open.title = t("openOriginal");
-      open.setAttribute("aria-label", t("openOriginal"));
-
+      open.title = t("open");
       open.addEventListener("click", () => {
-        if (isValidURL(item.url)) {
+        if (validURL(item.url)) {
           window.open(item.url, "_blank", "noopener,noreferrer");
         }
       });
@@ -1341,31 +1495,17 @@ footer {
       const fav = document.createElement("button");
       fav.className = "icon-btn";
       fav.type = "button";
-
-      const isFav = favourites.some(f => f.url === item.url);
+      const isFav = favourites.some(x => x.url === item.url);
       fav.textContent = isFav ? "★" : "☆";
-      fav.title = isFav ? t("unfavourite") : t("favourite");
-      fav.setAttribute("aria-label", fav.title);
-
-      fav.addEventListener("click", () => {
-        toggleFavourite(item);
-      });
+      fav.title = isFav ? t("unfav") : t("fav");
+      fav.addEventListener("click", () => toggleFavourite(item));
 
       const copy = document.createElement("button");
       copy.className = "icon-btn";
       copy.type = "button";
       copy.textContent = "⧉";
       copy.title = t("copy");
-      copy.setAttribute("aria-label", t("copy"));
-
-      copy.addEventListener("click", async () => {
-        try {
-          await navigator.clipboard.writeText(item.url);
-          showStatus(t("copied"), "success");
-        } catch {
-          showStatus(t("copyError"), "error");
-        }
-      });
+      copy.addEventListener("click", () => copyLink(item.url));
 
       controls.append(open, fav, copy);
       row.append(info, controls);
@@ -1373,67 +1513,45 @@ footer {
     });
   }
 
-  function toggleFavourite(item) {
-    const exists = favourites.some(f => f.url === item.url);
-
-    if (exists) {
-      favourites = favourites.filter(f => f.url !== item.url);
-    } else {
-      favourites = [item, ...favourites].slice(0, 30);
-    }
-
-    saveStorage();
-    renderHistory();
-  }
-
-  $("#showAllBtn").addEventListener("click", () => {
-    showingFavourites = false;
-    renderHistory();
+  $("#recentBtn").addEventListener("click", () => {
+    favouriteMode = false;
+    renderSaved();
   });
 
-  $("#showFavBtn").addEventListener("click", () => {
-    showingFavourites = true;
-    renderHistory();
+  $("#favouritesBtn").addEventListener("click", () => {
+    favouriteMode = true;
+    renderSaved();
   });
 
-  $("#clearHistoryBtn").addEventListener("click", () => {
+  $("#clearBtnHistory").addEventListener("click", () => {
     if (!confirm(t("clearConfirm"))) return;
 
-    if (showingFavourites) {
-      favourites = [];
-    } else {
-      history = [];
-    }
+    if (favouriteMode) favourites = [];
+    else recent = [];
 
-    saveStorage();
-    renderHistory();
-    showStatus(t("removed"), "success");
+    save();
+    renderSaved();
+    show(t("removed"));
   });
 
   $("#deleteDataBtn").addEventListener("click", () => {
     if (!confirm(t("deleteConfirm"))) return;
 
-    history = [];
+    recent = [];
     favourites = [];
 
     try {
-      localStorage.removeItem("zuvnelo_history");
+      localStorage.removeItem("zuvnelo_recent");
       localStorage.removeItem("zuvnelo_favourites");
     } catch {}
 
-    renderHistory();
-    showStatus(t("deleted"), "success");
-  });
-
-  $("#privacyBtn").addEventListener("click", () => {
-    alert(t("privacy"));
+    renderSaved();
+    show(t("deleted"));
   });
 
   $("#themeBtn").addEventListener("click", () => {
     document.body.classList.toggle("light");
-
     const light = document.body.classList.contains("light");
-
     $("#themeBtn").textContent = light ? "🌙" : "☀️";
 
     try {
@@ -1442,22 +1560,15 @@ footer {
   });
 
   $("#languageBtn").addEventListener("click", () => {
-    currentLanguage = currentLanguage === "en" ? "hi" : "en";
+    language = language === "en" ? "hi" : "en";
+    document.documentElement.lang = language;
+    $("#languageBtn").textContent = language === "en" ? "हिन्दी" : "English";
 
-    document.documentElement.lang = currentLanguage;
-
-    $("#languageBtn").textContent =
-      currentLanguage === "en" ? "हिन्दी" : "English";
-
-    $$("[data-en][data-hi]").forEach((element) => {
-      element.textContent = element.dataset[currentLanguage];
+    $$("[data-en][data-hi]").forEach(element => {
+      element.textContent = element.dataset[language];
     });
 
-    $("#mediaUrl").placeholder = currentLanguage === "hi"
-      ? currentPlatform + " का लिंक डालें..."
-      : "Paste " + currentPlatform + " link...";
-
-    renderHistory();
+    renderSaved();
   });
 
   $("#year").textContent = new Date().getFullYear();
@@ -1469,7 +1580,7 @@ footer {
     }
   } catch {}
 
-  renderHistory();
+  renderSaved();
 })();
 </script>
 
