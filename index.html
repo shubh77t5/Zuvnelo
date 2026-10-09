@@ -3,29 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Zuvnelo — Your Media, Your Way</title>
-<meta name="theme-color" content="#080914">
-<meta name="description" content="Welcome to Zuvnelo, your media hub.">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#09090f">
+<meta name="description" content="Zuvnelo — Your simple, modern social media link assistant.">
+<title>Zuvnelo — Your Digital Space</title>
 
 <style>
 :root {
-  --bg: #080914;
-  --card: #111326;
-  --text: #f7f7ff;
-  --muted: #999db9;
-  --blue: #5b8cff;
-  --purple: #a855f7;
+  --bg: #09090f;
+  --card: #12121c;
+  --card2: #191927;
+  --text: #f5f5ff;
+  --muted: #a2a2b8;
+  --border: rgba(255,255,255,.09);
+  --primary: #8b5cf6;
+  --secondary: #ec4899;
+  --shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+
+body.light {
+  --bg: #f5f5ff;
+  --card: #ffffff;
+  --card2: #eeeeff;
+  --text: #171725;
+  --muted: #66667d;
+  --border: rgba(20,20,50,.12);
+  --shadow: 0 20px 50px rgba(30,20,70,.08);
 }
 
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -33,13 +41,19 @@ html {
 }
 
 body {
-  font-family: 'Outfit', sans-serif;
-  background:
-    radial-gradient(ellipse at 50% 0%, #29204d 0%, transparent 48%),
-    var(--bg);
+  background: var(--bg);
   color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   min-height: 100vh;
-  overflow-x: hidden;
+  transition: background .25s, color .25s;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
 }
 
 a {
@@ -48,18 +62,54 @@ a {
 }
 
 .container {
-  width: min(100% - 32px, 920px);
+  width: min(1100px, 92%);
   margin: auto;
 }
 
-/* HEADER */
+/* Background */
+
+.background-glow {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: .20;
+}
+
+.glow.one {
+  background: #7c3aed;
+  top: 5%;
+  left: -120px;
+}
+
+.glow.two {
+  background: #ec4899;
+  top: 40%;
+  right: -150px;
+}
+
+/* Header */
 
 header {
-  padding: 18px 0;
-  border-bottom: 1px solid #ffffff0c;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
 }
 
 .nav {
+  min-height: 76px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -71,443 +121,601 @@ header {
   align-items: center;
   gap: 10px;
   font-size: 23px;
-  font-weight: 900;
-  letter-spacing: -1px;
+  font-weight: 850;
+  letter-spacing: -.8px;
 }
 
 .brand-icon {
-  width: 39px;
-  height: 39px;
+  height: 42px;
+  width: 42px;
   display: grid;
   place-items: center;
-  border-radius: 13px;
-  background: linear-gradient(135deg, #00d9ff, #5865f2, #a855f7);
-  box-shadow: 0 0 24px #5865f244;
-  font-size: 24px;
+  border-radius: 14px;
   color: white;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  box-shadow: 0 5px 25px #8b5cf644;
+  font-size: 23px;
 }
 
-.nav-badge {
-  color: #c5b5ff;
-  background: #a855f718;
-  border: 1px solid #a855f733;
-  border-radius: 30px;
-  padding: 8px 13px;
-  font-size: 12px;
+.brand span:last-child {
+  background: linear-gradient(90deg, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-/* HERO */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.small-btn {
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: var(--card);
+  border-radius: 12px;
+  padding: 10px 13px;
+  transition: .2s;
+}
+
+.small-btn:hover {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+
+/* Hero */
 
 .hero {
+  padding: 75px 0 35px;
   text-align: center;
-  padding: 58px 0 42px;
 }
 
-.eyebrow {
+.badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 14px;
-  border: 1px solid #ffffff16;
-  background: #ffffff08;
-  border-radius: 30px;
-  color: #c8c8e9;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  background: var(--card);
+  padding: 8px 15px;
   font-size: 12px;
-  margin-bottom: 24px;
+  color: var(--muted);
+  margin-bottom: 23px;
 }
 
-.dot {
+.badge-dot {
   width: 7px;
   height: 7px;
-  background: #6dffbb;
+  background: #34d399;
   border-radius: 50%;
-  box-shadow: 0 0 12px #6dffbb;
+  box-shadow: 0 0 12px #34d399;
 }
 
 .hero h1 {
-  font-size: clamp(48px, 11vw, 86px);
-  font-weight: 900;
-  letter-spacing: -5px;
-  line-height: 1.05;
-  overflow-wrap: anywhere;
+  font-size: clamp(36px, 7vw, 67px);
+  line-height: 1.12;
+  letter-spacing: -2px;
+  font-weight: 850;
+  max-width: 800px;
+  margin: 0 auto 20px;
 }
 
 .gradient-text {
-  background: linear-gradient(100deg, #61e8ff, #8585ff, #d29bff);
+  background: linear-gradient(100deg, #a78bfa 10%, #ec4899 55%, #60a5fa 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .hero p {
-  max-width: 470px;
-  margin: 20px auto 0;
   color: var(--muted);
-  font-size: 15px;
+  max-width: 600px;
   line-height: 1.8;
-}
-
-/* DOWNLOAD CARD */
-
-.download-card {
-  max-width: 690px;
+  font-size: 15px;
   margin: 0 auto;
-  padding: 24px;
-  background: linear-gradient(145deg, #171a32, #0e1020);
-  border: 1px solid #ffffff18;
-  border-radius: 24px;
-  box-shadow: 0 25px 80px #00000040;
 }
 
-.card-heading {
-  text-align: left;
-  margin-bottom: 18px;
+/* Main panel */
+
+.main-card {
+  max-width: 790px;
+  margin: 25px auto 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 25px;
+  padding: 27px;
+  box-shadow: var(--shadow);
 }
 
-.card-heading h2 {
-  font-size: 19px;
-  margin-bottom: 5px;
+.section-title {
+  font-size: 18px;
+  font-weight: 750;
+  margin-bottom: 7px;
 }
 
-.card-heading p {
-  font-size: 12px;
+.section-subtitle {
   color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+/* Platforms */
+
+.platform-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 11px;
+  margin-bottom: 25px;
+}
+
+.platform {
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: var(--card2);
+  color: var(--text);
+  padding: 16px 7px;
+  min-height: 103px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  transition: .2s;
+}
+
+.platform:hover {
+  border-color: var(--primary);
+  transform: translateY(-3px);
+}
+
+.platform.active {
+  border-color: var(--primary);
+  background: rgba(139,92,246,.13);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.platform-icon {
+  font-size: 27px;
+  line-height: 1;
+}
+
+.platform-name {
+  font-size: 12px;
+  font-weight: 650;
+}
+
+/* Input */
+
+.input-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .input-wrap {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #080a16;
-  border: 1px solid #343651;
+  border: 1px solid var(--border);
   border-radius: 15px;
-  padding: 8px;
-  transition: .25s;
-}
-
-.input-wrap:focus-within {
-  border-color: #8585ff;
-  box-shadow: 0 0 0 3px #8585ff16;
-}
-
-.link-symbol {
-  padding-left: 7px;
-  color: #8e9cff;
-  font-size: 21px;
-}
-
-input {
-  min-width: 0;
-  width: 100%;
-  padding: 12px 2px;
-  border: 0;
-  outline: none;
-  background: transparent;
-  color: white;
-  font: inherit;
-  font-size: 14px;
-}
-
-input::placeholder {
-  color: #71758e;
-}
-
-.paste-btn,
-.continue-btn {
-  border: 0;
-  cursor: pointer;
-  color: white;
-  font-family: inherit;
-  font-weight: 700;
-  border-radius: 11px;
-  padding: 13px 16px;
-  background: linear-gradient(110deg, #537dff, #9b58f6);
-  white-space: nowrap;
+  background: var(--bg);
+  padding: 7px;
   transition: .2s;
 }
 
-.paste-btn:active,
-.continue-btn:active {
-  transform: scale(.97);
+.input-wrap:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(139,92,246,.12);
 }
 
-.continue-btn {
+.input-wrap input {
   width: 100%;
-  margin-top: 13px;
-  padding: 15px;
-  font-size: 15px;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  padding: 12px 9px;
+  font-size: 14px;
 }
 
-#status {
-  display: none;
-  color: #d0d4f7;
-  font-size: 13px;
-  line-height: 1.6;
+.input-wrap input::placeholder {
+  color: var(--muted);
+}
+
+.clear-btn {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  padding: 10px;
+}
+
+.primary-btn {
+  width: 100%;
+  border: none;
+  border-radius: 14px;
   margin-top: 14px;
-  text-align: center;
-}
-
-.download-actions {
-  display: none;
-  gap: 10px;
-  margin-top: 14px;
-}
-
-.media-btn {
-  flex: 1;
-  padding: 13px 8px;
-  border: 1px solid #ffffff1c;
-  background: #ffffff08;
+  padding: 16px;
+  background: linear-gradient(100deg, #7c3aed, #c026d3, #ec4899);
   color: white;
+  font-weight: 800;
+  font-size: 15px;
+  box-shadow: 0 8px 25px rgba(139,92,246,.20);
+  transition: .2s;
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(139,92,246,.30);
+}
+
+.primary-btn:active {
+  transform: scale(.99);
+}
+
+.status {
+  display: none;
+  margin-top: 15px;
+  padding: 13px;
+  border: 1px solid var(--border);
   border-radius: 12px;
-  font-family: inherit;
-  font-weight: 600;
-  cursor: pointer;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
-/* PLATFORMS */
-
-.platform-section {
-  padding: 55px 0 15px;
+.status.show {
+  display: block;
 }
 
-.section-heading {
+.status.success {
+  background: rgba(16,185,129,.09);
+  border-color: rgba(16,185,129,.3);
+}
+
+.status.error {
+  background: rgba(239,68,68,.08);
+  border-color: rgba(239,68,68,.3);
+}
+
+.status a {
+  color: #a78bfa;
+  text-decoration: underline;
+}
+
+/* Features */
+
+.features {
+  padding: 80px 0 35px;
+}
+
+.center-heading {
   text-align: center;
-  margin-bottom: 23px;
+  margin-bottom: 35px;
 }
 
-.section-heading h2 {
-  font-size: 25px;
+.center-heading h2 {
+  font-size: clamp(25px, 5vw, 36px);
+  margin-bottom: 12px;
   letter-spacing: -.7px;
 }
 
-.section-heading p {
-  margin-top: 8px;
+.center-heading p {
   color: var(--muted);
-  font-size: 13px;
-  line-height: 1.7;
-}
-
-.platform-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  max-width: 570px;
-  margin: auto;
-}
-
-.platform {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  padding: 15px;
-  border: 1px solid #ffffff12;
-  background: linear-gradient(135deg, #141629, #0e1020);
-  border-radius: 16px;
-  transition: transform .2s, border-color .2s;
-}
-
-.platform:hover {
-  transform: translateY(-3px);
-  border-color: #8a83ff66;
-}
-
-.platform img {
-  width: 34px;
-  height: 34px;
-  object-fit: contain;
-}
-
-.platform-name {
   font-size: 14px;
-  font-weight: 700;
-}
-
-.platform-sub {
-  margin-top: 3px;
-  color: var(--muted);
-  font-size: 10px;
-}
-
-/* FEATURES */
-
-.features {
-  padding: 54px 0;
+  line-height: 1.7;
 }
 
 .feature-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 16px;
 }
 
-.feature {
-  padding: 20px 15px;
-  border: 1px solid #ffffff12;
-  border-radius: 17px;
-  background: #ffffff05;
-  text-align: center;
+.feature-card {
+  padding: 23px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 19px;
+  transition: .2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(139,92,246,.55);
 }
 
 .feature-icon {
-  font-size: 25px;
-  margin-bottom: 12px;
-}
-
-.feature h3 {
-  font-size: 14px;
-  margin-bottom: 8px;
-}
-
-.feature p {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.7;
-}
-
-/* HOW IT WORKS */
-
-.steps {
-  padding: 0 0 55px;
-}
-
-.step-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  max-width: 700px;
-  margin: auto;
-}
-
-.step {
-  text-align: center;
-  padding: 16px 8px;
-}
-
-.step-number {
-  width: 42px;
-  height: 42px;
+  width: 47px;
+  height: 47px;
   display: grid;
   place-items: center;
-  margin: 0 auto 12px;
   border-radius: 14px;
-  background: linear-gradient(135deg, #537dff, #9b58f6);
-  font-weight: 800;
+  background: rgba(139,92,246,.14);
+  font-size: 23px;
+  margin-bottom: 17px;
 }
 
-.step h3 {
-  font-size: 14px;
-  margin-bottom: 7px;
+.feature-card h3 {
+  font-size: 16px;
+  margin-bottom: 9px;
 }
 
-.step p {
+.feature-card p {
   color: var(--muted);
-  font-size: 12px;
-  line-height: 1.6;
-}
-
-/* FOOTER */
-
-footer {
-  border-top: 1px solid #ffffff12;
-  padding: 28px 0 23px;
-  text-align: center;
-  background: #05060d66;
-}
-
-.footer-brand {
-  font-size: 17px;
-  font-weight: 900;
-  letter-spacing: 1px;
-}
-
-.footer-note {
-  color: var(--muted);
-  font-size: 11px;
-  margin: 12px auto;
-  max-width: 520px;
+  font-size: 13px;
   line-height: 1.8;
 }
 
-.shubh {
-  margin-top: 21px;
-  font-family: 'Pacifico', cursive;
-  font-size: 32px;
-  background: linear-gradient(100deg, #65e8ff, #a38bff, #ff9adf);
+/* Recent links */
+
+.history-section {
+  padding: 35px 0 60px;
+}
+
+.history-box {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--card);
+  padding: 22px;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.history-header h2 {
+  font-size: 19px;
+}
+
+.history-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.text-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 8px 11px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.text-btn:hover {
+  color: var(--text);
+  border-color: var(--primary);
+}
+
+.history-list {
+  display: grid;
+  gap: 10px;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 13px;
+  background: var(--card2);
+}
+
+.history-info {
+  min-width: 0;
+}
+
+.history-platform {
+  font-size: 12px;
+  color: #a78bfa;
+  font-weight: 750;
+  margin-bottom: 5px;
+}
+
+.history-url {
+  color: var(--muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.history-controls {
+  display: flex;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+.icon-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 9px;
+  min-width: 35px;
+  min-height: 35px;
+  padding: 6px;
+}
+
+.icon-btn:hover {
+  border-color: var(--primary);
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--muted);
+  padding: 25px 10px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* Footer */
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 25px 0 15px;
+  text-align: center;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-note {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+
+.footer-links button {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.footer-links button:hover {
+  color: var(--text);
+}
+
+/* Stylish signature */
+
+.footer-signature {
+  text-align: center;
+  font-family: cursive;
+  font-size: 29px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin: 10px 0 5px;
+  background: linear-gradient(90deg, #a78bfa, #ec4899, #60a5fa);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 0 15px #8b6aff55);
+  filter: drop-shadow(0 0 12px rgba(139,92,246,.20));
+  animation: signatureGlow 3s ease-in-out infinite alternate;
 }
 
-.copyright {
-  color: #666a83;
-  font-size: 11px;
-  margin-top: 13px;
+@keyframes signatureGlow {
+  from {
+    filter: drop-shadow(0 0 4px rgba(139,92,246,.15));
+  }
+  to {
+    filter: drop-shadow(0 0 13px rgba(236,72,153,.35));
+  }
 }
 
-@media (max-width: 480px) {
+/* Notice */
+
+.notice {
+  max-width: 790px;
+  margin: 18px auto 0;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--muted);
+  border-radius: 14px;
+  padding: 15px 17px;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* Mobile */
+
+@media (max-width: 650px) {
+  .nav {
+    min-height: 68px;
+  }
+
+  .brand {
+    font-size: 20px;
+  }
+
+  .brand-icon {
+    height: 37px;
+    width: 37px;
+    border-radius: 12px;
+  }
+
+  .small-btn {
+    padding: 9px 10px;
+    font-size: 12px;
+  }
+
   .hero {
-    padding-top: 45px;
+    padding-top: 55px;
   }
 
   .hero h1 {
-    letter-spacing: -3px;
+    letter-spacing: -1.3px;
   }
 
-  .download-card {
-    padding: 17px;
-    border-radius: 19px;
+  .main-card {
+    padding: 18px;
+    border-radius: 20px;
   }
 
-  .input-wrap {
-    gap: 5px;
-  }
-
-  .paste-btn {
-    padding: 12px 10px;
-    font-size: 12px;
-  }
-
-  .platform {
-    padding: 12px 9px;
+  .platform-grid {
+    grid-template-columns: repeat(3, 1fr);
     gap: 9px;
   }
 
-  .platform img {
-    width: 29px;
-    height: 29px;
+  .platform {
+    min-height: 90px;
+    border-radius: 13px;
   }
 
-  .platform-name {
-    font-size: 12px;
+  .platform-icon {
+    font-size: 24px;
   }
 
   .feature-grid {
     grid-template-columns: 1fr;
   }
 
-  .feature {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    text-align: left;
+  .features {
+    padding-top: 60px;
   }
 
-  .feature-icon {
-    margin: 0;
+  .history-box {
+    padding: 15px;
   }
 
-  .step-list {
-    gap: 4px;
+  .history-header {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
-  .step h3 {
-    font-size: 12px;
+  .history-item {
+    align-items: flex-start;
   }
 
-  .step p {
-    font-size: 11px;
+  .history-controls {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 </style>
@@ -515,313 +723,754 @@ footer {
 
 <body>
 
+<div class="background-glow">
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+</div>
+
 <header>
   <div class="container nav">
-    <a class="brand" href="#" aria-label="Zuvnelo Home">
+
+    <a class="brand" href="#home" aria-label="Zuvnelo home">
       <span class="brand-icon">Z</span>
-      <span>ZUVNELO</span>
+      <span>Zuvnelo</span>
     </a>
-    <span class="nav-badge">MEDIA HUB ✦</span>
+
+    <div class="nav-actions">
+      <button class="small-btn" id="languageBtn" type="button">
+        हिन्दी
+      </button>
+
+      <button class="small-btn" id="themeBtn" type="button"
+        aria-label="Toggle colour theme">
+        ☀️
+      </button>
+    </div>
+
   </div>
 </header>
 
-<main>
+<main id="home">
+
   <section class="hero container">
-    <div class="eyebrow">
-      <span class="dot"></span>
-      YOUR MEDIA SPACE
+
+    <div class="badge">
+      <span class="badge-dot"></span>
+      <span data-en="Your digital space, simplified"
+        data-hi="आपकी डिजिटल दुनिया, अब आसान">
+        Your digital space, simplified
+      </span>
     </div>
 
     <h1>
-      Your Media.<br>
-      <span class="gradient-text">Your Way.</span>
+      <span data-en="One link." data-hi="एक लिंक।">One link.</span>
+      <br>
+      <span class="gradient-text"
+        data-en="A simpler experience."
+        data-hi="एक आसान अनुभव।">
+        A simpler experience.
+      </span>
     </h1>
 
-    <p>
-      One simple place for your media links.
-      Paste a supported link and explore the available options.
+    <p data-en="Choose your platform, enter a link, and manage your recent links in one clean and modern space."
+       data-hi="अपना प्लेटफॉर्म चुनें, लिंक डालें और अपने हाल के लिंक को एक साफ-सुथरी जगह पर मैनेज करें।">
+      Choose your platform, enter a link, and manage your recent links in one clean and modern space.
     </p>
+
   </section>
 
-  <section class="container" id="downloader">
-    <div class="download-card">
-      <div class="card-heading">
-        <h2>✦ Start with your link</h2>
-        <p>Paste a link to check whether it's supported.</p>
+  <section class="container">
+
+    <div class="main-card">
+
+      <h2 class="section-title"
+        data-en="Choose your platform"
+        data-hi="अपना प्लेटफॉर्म चुनें">
+        Choose your platform
+      </h2>
+
+      <p class="section-subtitle"
+        data-en="Select the platform for your link."
+        data-hi="अपने लिंक के लिए प्लेटफॉर्म चुनें।">
+        Select the platform for your link.
+      </p>
+
+      <div class="platform-grid" id="platformGrid">
+
+        <button class="platform active" type="button"
+          data-platform="Instagram">
+          <span class="platform-icon">📸</span>
+          <span class="platform-name">Instagram</span>
+        </button>
+
+        <button class="platform" type="button"
+          data-platform="YouTube">
+          <span class="platform-icon">▶️</span>
+          <span class="platform-name">YouTube</span>
+        </button>
+
+        <button class="platform" type="button"
+          data-platform="Facebook">
+          <span class="platform-icon">🌐</span>
+          <span class="platform-name">Facebook</span>
+        </button>
+
+        <button class="platform" type="button"
+          data-platform="TikTok">
+          <span class="platform-icon">🎵</span>
+          <span class="platform-name">TikTok</span>
+        </button>
+
+        <button class="platform" type="button"
+          data-platform="X">
+          <span class="platform-icon">𝕏</span>
+          <span class="platform-name">X / Twitter</span>
+        </button>
+
+        <button class="platform" type="button"
+          data-platform="Pinterest">
+          <span class="platform-icon">📌</span>
+          <span class="platform-name">Pinterest</span>
+        </button>
+
+        <button class="platform" type="button"
+          data-platform="Reddit">
+          <span class="platform-icon">👽</span>
+          <span class="platform-name">Reddit</span>
+        </button>
+
+        <button class="platform" type="button"
+          data-platform="Snapchat">
+          <span class="platform-icon">👻</span>
+          <span class="platform-name">Snapchat</span>
+        </button>
+
       </div>
 
       <form id="linkForm">
+
+        <label class="input-label" for="mediaUrl"
+          data-en="Paste your link"
+          data-hi="अपना लिंक यहाँ डालें">
+          Paste your link
+        </label>
+
         <div class="input-wrap">
-          <span class="link-symbol">↗</span>
+
           <input
-            id="mediaUrl"
             type="url"
-            placeholder="Paste your media link here..."
-            aria-label="Media link"
+            id="mediaUrl"
+            placeholder="https://..."
+            autocomplete="url"
+            inputmode="url"
             required
           >
-          <button class="paste-btn" type="button" id="pasteBtn">
-            Paste
+
+          <button type="button" class="clear-btn" id="clearBtn"
+            aria-label="Clear link">
+            ✕
           </button>
+
         </div>
 
-        <button class="continue-btn" type="submit">
-          Check Link &nbsp; →
+        <button class="primary-btn" type="submit"
+          data-en="Continue →"
+          data-hi="आगे बढ़ें →">
+          Continue →
         </button>
+
+        <div class="status" id="statusBox" role="status"
+          aria-live="polite"></div>
+
       </form>
 
-      <div id="status" role="status" aria-live="polite"></div>
-
-      <div id="downloadActions" class="download-actions">
-        <button class="media-btn" type="button" onclick="showDemoMessage()">
-          ▶ Video
-        </button>
-        <button class="media-btn" type="button" onclick="showDemoMessage()">
-          ♪ Audio
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <section class="platform-section container">
-    <div class="section-heading">
-      <h2>Explore Platforms</h2>
-      <p>Choose a platform to learn more about link support.</p>
     </div>
 
-    <div class="platform-grid">
+    <div class="notice">
+      <strong data-en="Please note:"
+        data-hi="ध्यान दें:">Please note:</strong>
 
-      <a class="platform" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-        <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram logo">
-        <div>
-          <div class="platform-name">Instagram</div>
-          <div class="platform-sub">Photos & Reels</div>
-        </div>
-      </a>
-
-      <a class="platform" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
-        <img src="https://cdn.simpleicons.org/youtube/FF0033" alt="YouTube logo">
-        <div>
-          <div class="platform-name">YouTube</div>
-          <div class="platform-sub">Videos & Shorts</div>
-        </div>
-      </a>
-
-      <a class="platform" href="https://www.snapchat.com/" target="_blank" rel="noopener noreferrer">
-        <img src="https://cdn.simpleicons.org/snapchat/FFFC00" alt="Snapchat logo">
-        <div>
-          <div class="platform-name">Snapchat</div>
-          <div class="platform-sub">Snap content</div>
-        </div>
-      </a>
-
-      <a class="platform" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
-        <img src="https://cdn.simpleicons.org/facebook/0866FF" alt="Facebook logo">
-        <div>
-          <div class="platform-name">Facebook</div>
-          <div class="platform-sub">Videos & posts</div>
-        </div>
-      </a>
-
-      <a class="platform" href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">
-        <img src="https://cdn.simpleicons.org/tiktok/FFFFFF" alt="TikTok logo">
-        <div>
-          <div class="platform-name">TikTok</div>
-          <div class="platform-sub">Short videos</div>
-        </div>
-      </a>
-
-      <a class="platform" href="https://x.com/" target="_blank" rel="noopener noreferrer">
-        <img src="https://cdn.simpleicons.org/x/FFFFFF" alt="X logo">
-        <div>
-          <div class="platform-name">X</div>
-          <div class="platform-sub">Posts & media</div>
-        </div>
-      </a>
-
-      <a class="platform" href="https://www.pinterest.com/" target="_blank" rel="noopener noreferrer">
-        <img src="https://cdn.simpleicons.org/pinterest/E60023" alt="Pinterest logo">
-        <div>
-          <div class="platform-name">Pinterest</div>
-          <div class="platform-sub">Pins & ideas</div>
-        </div>
-      </a>
-
-      <a class="platform" href="https://www.reddit.com/" target="_blank" rel="noopener noreferrer">
-        <img src="https://cdn.simpleicons.org/reddit/FF4500" alt="Reddit logo">
-        <div>
-          <div class="platform-name">Reddit</div>
-          <div class="platform-sub">Posts & videos</div>
-        </div>
-      </a>
-
+      <span data-en="This version checks links and saves them in your browser. A working media-download service is not connected yet. Only use content you have permission to access or download."
+        data-hi="यह वर्जन लिंक चेक करता है और उन्हें आपके ब्राउज़र में सेव करता है। अभी असली मीडिया डाउनलोड सर्विस कनेक्ट नहीं है। केवल उसी कंटेंट का इस्तेमाल करें जिसे एक्सेस या डाउनलोड करने की अनुमति हो।">
+        This version checks links and saves them in your browser. A working media-download service is not connected yet. Only use content you have permission to access or download.
+      </span>
     </div>
+
   </section>
 
   <section class="features container">
-    <div class="section-heading">
-      <h2>Made for Simplicity</h2>
-      <p>A clean, straightforward experience on your phone.</p>
+
+    <div class="center-heading">
+      <h2>
+        <span data-en="Made for simplicity"
+          data-hi="आसान इस्तेमाल के लिए">
+          Made for simplicity
+        </span>
+      </h2>
+
+      <p data-en="A clean experience with useful features."
+        data-hi="ज़रूरी फीचर्स के साथ एक साफ-सुथरा अनुभव।">
+        A clean experience with useful features.
+      </p>
     </div>
 
     <div class="feature-grid">
-      <article class="feature">
+
+      <article class="feature-card">
         <div class="feature-icon">⚡</div>
-        <div>
-          <h3>Simple to Use</h3>
-          <p>Paste a link and check available options.</p>
-        </div>
+        <h3 data-en="Simple & Fast"
+          data-hi="आसान और तेज़">
+          Simple & Fast
+        </h3>
+        <p data-en="A lightweight interface designed to work on mobile and desktop."
+          data-hi="मोबाइल और कंप्यूटर पर इस्तेमाल के लिए हल्का और आसान इंटरफेस।">
+          A lightweight interface designed to work on mobile and desktop.
+        </p>
       </article>
 
-      <article class="feature">
-        <div class="feature-icon">📱</div>
-        <div>
-          <h3>Mobile Friendly</h3>
-          <p>Designed to fit your mobile screen.</p>
-        </div>
-      </article>
-
-      <article class="feature">
+      <article class="feature-card">
         <div class="feature-icon">🔒</div>
-        <div>
-          <h3>Permission First</h3>
-          <p>Use content you own or have permission to use.</p>
+        <h3 data-en="Browser Storage"
+          data-hi="ब्राउज़र में सेव">
+          Browser Storage
+        </h3>
+        <p data-en="Your recent links and favourites are stored locally in this browser."
+          data-hi="आपके हाल के लिंक और पसंदीदा लिंक इसी ब्राउज़र में सेव होते हैं।">
+          Your recent links and favourites are stored locally in this browser.
+        </p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h3 data-en="Your Style"
+          data-hi="आपकी पसंद">
+          Your Style
+        </h3>
+        <p data-en="Switch between light and dark themes and choose your language."
+          data-hi="लाइट और डार्क थीम बदलें और अपनी भाषा चुनें।">
+          Switch between light and dark themes and choose your language.
+        </p>
+      </article>
+
+    </div>
+
+  </section>
+
+  <section class="history-section container">
+
+    <div class="history-box">
+
+      <div class="history-header">
+
+        <h2 data-en="Your saved links"
+          data-hi="आपके सेव किए गए लिंक">
+          Your saved links
+        </h2>
+
+        <div class="history-actions">
+
+          <button type="button" class="text-btn" id="showAllBtn"
+            data-en="Recent"
+            data-hi="हाल के">
+            Recent
+          </button>
+
+          <button type="button" class="text-btn" id="showFavBtn"
+            data-en="★ Favourites"
+            data-hi="★ पसंदीदा">
+            ★ Favourites
+          </button>
+
+          <button type="button" class="text-btn" id="clearHistoryBtn"
+            data-en="Clear all"
+            data-hi="सब हटाएँ">
+            Clear all
+          </button>
+
         </div>
-      </article>
+
+      </div>
+
+      <div class="history-list" id="historyList"></div>
+
     </div>
+
   </section>
 
-  <section class="steps container">
-    <div class="section-heading">
-      <h2>How It Works</h2>
-      <p>Three simple steps to get started.</p>
-    </div>
-
-    <div class="step-list">
-      <article class="step">
-        <div class="step-number">1</div>
-        <h3>Paste Link</h3>
-        <p>Enter your media URL.</p>
-      </article>
-
-      <article class="step">
-        <div class="step-number">2</div>
-        <h3>Check Support</h3>
-        <p>See if the source is recognized.</p>
-      </article>
-
-      <article class="step">
-        <div class="step-number">3</div>
-        <h3>Choose Option</h3>
-        <p>Continue when an authorized source is connected.</p>
-      </article>
-    </div>
-  </section>
 </main>
 
 <footer>
-  <div class="container">
-    <div class="footer-brand">ZUVNELO</div>
+
+  <div class="container footer-inner">
 
     <p class="footer-note">
-      Only use media you own or have permission to download.
-      Platform rules and copyright laws apply.
-      Platform logos are used to identify their respective services.
+      © <span id="year"></span> Zuvnelo.
+      <span data-en="Made with care."
+        data-hi="प्यार से बनाया गया।">
+        Made with care.
+      </span>
     </p>
 
-    <div class="shubh">Shubh</div>
+    <div class="footer-links">
 
-    <div class="copyright">
-      © <span id="year"></span> Zuvnelo · Made with care.
+      <button type="button" id="privacyBtn"
+        data-en="Privacy"
+        data-hi="प्राइवेसी">
+        Privacy
+      </button>
+
+      <button type="button" id="deleteDataBtn"
+        data-en="Delete my local data"
+        data-hi="मेरा सेव डेटा हटाएँ">
+        Delete my local data
+      </button>
+
     </div>
+
+    <!-- Stylish signature -->
+    <div class="footer-signature">𝓢𝓱𝓾𝓫𝓱</div>
+
   </div>
+
 </footer>
 
 <script>
-const input = document.getElementById("mediaUrl");
-const statusBox = document.getElementById("status");
-const actions = document.getElementById("downloadActions");
+(() => {
+  "use strict";
 
-document.getElementById("year").textContent = new Date().getFullYear();
+  const $ = (selector) => document.querySelector(selector);
+  const $$ = (selector) => document.querySelectorAll(selector);
 
-const platforms = [
-  { name: "Instagram", domains: ["instagram.com"] },
-  { name: "YouTube", domains: ["youtube.com", "youtu.be"] },
-  { name: "Snapchat", domains: ["snapchat.com"] },
-  { name: "Facebook", domains: ["facebook.com", "fb.watch"] },
-  { name: "TikTok", domains: ["tiktok.com"] },
-  { name: "X", domains: ["x.com", "twitter.com"] },
-  { name: "Pinterest", domains: ["pinterest.com", "pin.it"] },
-  { name: "Reddit", domains: ["reddit.com", "redd.it"] }
-];
+  const platforms = {
+    "Instagram": ["instagram.com", "www.instagram.com"],
+    "YouTube": ["youtube.com", "www.youtube.com", "youtu.be", "m.youtube.com"],
+    "Facebook": ["facebook.com", "www.facebook.com", "fb.watch", "m.facebook.com"],
+    "TikTok": ["tiktok.com", "www.tiktok.com", "vm.tiktok.com", "vt.tiktok.com"],
+    "X": ["x.com", "www.x.com", "twitter.com", "www.twitter.com"],
+    "Pinterest": ["pinterest.com", "www.pinterest.com", "pin.it"],
+    "Reddit": ["reddit.com", "www.reddit.com", "redd.it"],
+    "Snapchat": ["snapchat.com", "www.snapchat.com"]
+  };
 
-function getPlatform(url) {
-  try {
-    const host = new URL(url).hostname.toLowerCase().replace(/^www\./, "");
-    return platforms.find(platform =>
-      platform.domains.some(domain =>
-        host === domain || host.endsWith("." + domain)
-      )
-    );
-  } catch {
+  const translations = {
+    en: {
+      placeholder: "Paste a valid link...",
+      empty: "Please enter a link first.",
+      invalid: "Please enter a valid link starting with https:// or http://.",
+      wrongPlatform: "This link does not appear to match the selected platform.",
+      checked: "Link checked successfully.",
+      service: "The download service is not connected yet. You can open the original link below.",
+      openOriginal: "Open original link ↗",
+      noHistory: "No saved links yet.",
+      noFavourites: "No favourite links yet.",
+      deleteConfirm: "Delete all locally saved links and favourites?",
+      deleted: "Your locally saved data has been deleted.",
+      privacy: "This website version stores recent links and favourites in your browser using local storage. It does not send those saved entries to a server. Links you open may be handled by the relevant external platform. Real media downloading is not enabled in this version.",
+      remove: "Remove",
+      copied: "Link copied.",
+      copyError: "Could not copy automatically. Open the link and copy it from your browser.",
+      clearConfirm: "Clear your saved links?",
+      removed: "Saved links cleared.",
+      favourite: "Add to favourites",
+      unfavourite: "Remove from favourites",
+      copy: "Copy link",
+      clearInput: "Please enter a link first."
+    },
+    hi: {
+      placeholder: "सही लिंक डालें...",
+      empty: "पहले लिंक डालें।",
+      invalid: "कृपया https:// या http:// से शुरू होने वाला सही लिंक डालें।",
+      wrongPlatform: "यह लिंक चुने गए प्लेटफॉर्म का नहीं लग रहा है।",
+      checked: "लिंक सफलतापूर्वक चेक हो गया।",
+      service: "अभी डाउनलोड सर्विस कनेक्ट नहीं है। आप नीचे दिए लिंक से असली पेज खोल सकते हैं।",
+      openOriginal: "असली लिंक खोलें ↗",
+      noHistory: "अभी कोई लिंक सेव नहीं है।",
+      noFavourites: "अभी कोई पसंदीदा लिंक नहीं है।",
+      deleteConfirm: "क्या आप सभी सेव किए गए लिंक और पसंदीदा लिंक हटाना चाहते हैं?",
+      deleted: "आपका सेव किया गया डेटा हटा दिया गया है।",
+      privacy: "यह वेबसाइट हाल के लिंक और पसंदीदा लिंक आपके ब्राउज़र के लोकल स्टोरेज में रखती है। सेव की गई जानकारी सर्वर पर नहीं भेजी जाती। आपके द्वारा खोले गए लिंक संबंधित बाहरी प्लेटफॉर्म पर जा सकते हैं। इस वर्जन में असली मीडिया डाउनलोड चालू नहीं है।",
+      remove: "हटाएँ",
+      copied: "लिंक कॉपी हो गया।",
+      copyError: "लिंक अपने आप कॉपी नहीं हो पाया। उसे खोलकर ब्राउज़र से कॉपी करें।",
+      clearConfirm: "क्या आप सेव किए गए लिंक हटाना चाहते हैं?",
+      removed: "सेव किए गए लिंक हटा दिए गए।",
+      favourite: "पसंदीदा में जोड़ें",
+      unfavourite: "पसंदीदा से हटाएँ",
+      copy: "लिंक कॉपी करें",
+      clearInput: "पहले लिंक डालें।"
+    }
+  };
+
+  let currentPlatform = "Instagram";
+  let currentLanguage = "en";
+  let showingFavourites = false;
+  let currentStatusUrl = "";
+
+  let history = readStorage("zuvnelo_history");
+  let favourites = readStorage("zuvnelo_favourites");
+
+  function readStorage(key) {
+    try {
+      const value = JSON.parse(localStorage.getItem(key) || "[]");
+      return Array.isArray(value) ? value : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function saveStorage() {
+    try {
+      localStorage.setItem("zuvnelo_history", JSON.stringify(history));
+      localStorage.setItem("zuvnelo_favourites", JSON.stringify(favourites));
+    } catch {
+      showStatus(
+        "Browser storage is unavailable. Your links may not be saved.",
+        "error"
+      );
+    }
+  }
+
+  function t(key) {
+    return translations[currentLanguage][key] || key;
+  }
+
+  function setStatus(message, type = "success", extraHTML = "") {
+    const box = $("#statusBox");
+    box.className = "status show " + type;
+    box.replaceChildren();
+
+    const messageNode = document.createElement("div");
+    messageNode.textContent = message;
+    box.appendChild(messageNode);
+
+    if (extraHTML) {
+      const holder = document.createElement("div");
+      holder.style.marginTop = "8px";
+      holder.innerHTML = extraHTML;
+      box.appendChild(holder);
+    }
+  }
+
+  function showStatus(message, type = "success") {
+    setStatus(message, type);
+  }
+
+  function getHost(url) {
+    try {
+      return new URL(url).hostname.toLowerCase();
+    } catch {
+      return "";
+    }
+  }
+
+  function getMatchingPlatform(url) {
+    const host = getHost(url);
+
+    for (const [platform, hosts] of Object.entries(platforms)) {
+      if (hosts.includes(host)) {
+        return platform;
+      }
+    }
+
     return null;
   }
-}
 
-document.getElementById("pasteBtn").addEventListener("click", async () => {
+  function isValidURL(value) {
+    try {
+      const url = new URL(value);
+      return url.protocol === "https:" || url.protocol === "http:";
+    } catch {
+      return false;
+    }
+  }
+
+  function setPlatform(platform) {
+    currentPlatform = platform;
+
+    $$(".platform").forEach((button) => {
+      button.classList.toggle(
+        "active",
+        button.dataset.platform === platform
+      );
+    });
+
+    const input = $("#mediaUrl");
+    input.placeholder = currentLanguage === "hi"
+      ? platform + " का लिंक डालें..."
+      : "Paste " + platform + " link...";
+
+    $("#statusBox").className = "status";
+  }
+
+  $$(".platform").forEach((button) => {
+    button.addEventListener("click", () => {
+      setPlatform(button.dataset.platform);
+    });
+  });
+
+  $("#clearBtn").addEventListener("click", () => {
+    $("#mediaUrl").value = "";
+    $("#statusBox").className = "status";
+    $("#mediaUrl").focus();
+  });
+
+  $("#linkForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const input = $("#mediaUrl");
+    const value = input.value.trim();
+
+    if (!value) {
+      showStatus(t("empty"), "error");
+      input.focus();
+      return;
+    }
+
+    if (!isValidURL(value)) {
+      showStatus(t("invalid"), "error");
+      return;
+    }
+
+    const matched = getMatchingPlatform(value);
+
+    if (!matched) {
+      showStatus(
+        currentLanguage === "hi"
+          ? "यह लिंक समर्थित प्लेटफॉर्म में से किसी का नहीं लग रहा है। लिंक चेक करें।"
+          : "This link does not match a supported platform.",
+        "error"
+      );
+      return;
+    }
+
+    if (matched !== currentPlatform) {
+      showStatus(t("wrongPlatform"), "error");
+      setPlatform(matched);
+      return;
+    }
+
+    currentStatusUrl = value;
+
+    const entry = {
+      url: value,
+      platform: matched,
+      time: Date.now()
+    };
+
+    history = [
+      entry,
+      ...history.filter(item => item.url !== value)
+    ].slice(0, 30);
+
+    saveStorage();
+    renderHistory();
+
+    setStatus(
+      t("checked") + " " + t("service"),
+      "success",
+      '<a href="' + escapeAttribute(value) +
+      '" target="_blank" rel="noopener noreferrer">' +
+      t("openOriginal") + '</a>'
+    );
+  });
+
+  function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, (character) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    })[character]);
+  }
+
+  function escapeAttribute(value) {
+    return escapeHTML(value);
+  }
+
+  function renderHistory() {
+    const list = $("#historyList");
+    list.replaceChildren();
+
+    const items = showingFavourites ? favourites : history;
+
+    if (!items.length) {
+      const empty = document.createElement("div");
+      empty.className = "empty-state";
+      empty.textContent = showingFavourites
+        ? t("noFavourites")
+        : t("noHistory");
+
+      list.appendChild(empty);
+      return;
+    }
+
+    items.forEach((item) => {
+      const row = document.createElement("div");
+      row.className = "history-item";
+
+      const info = document.createElement("div");
+      info.className = "history-info";
+
+      const platform = document.createElement("div");
+      platform.className = "history-platform";
+      platform.textContent = item.platform;
+
+      const url = document.createElement("div");
+      url.className = "history-url";
+      url.textContent = item.url;
+
+      info.append(platform, url);
+
+      const controls = document.createElement("div");
+      controls.className = "history-controls";
+
+      const open = document.createElement("button");
+      open.className = "icon-btn";
+      open.type = "button";
+      open.textContent = "↗";
+      open.title = t("openOriginal");
+      open.setAttribute("aria-label", t("openOriginal"));
+
+      open.addEventListener("click", () => {
+        if (isValidURL(item.url)) {
+          window.open(item.url, "_blank", "noopener,noreferrer");
+        }
+      });
+
+      const fav = document.createElement("button");
+      fav.className = "icon-btn";
+      fav.type = "button";
+
+      const isFav = favourites.some(f => f.url === item.url);
+      fav.textContent = isFav ? "★" : "☆";
+      fav.title = isFav ? t("unfavourite") : t("favourite");
+      fav.setAttribute("aria-label", fav.title);
+
+      fav.addEventListener("click", () => {
+        toggleFavourite(item);
+      });
+
+      const copy = document.createElement("button");
+      copy.className = "icon-btn";
+      copy.type = "button";
+      copy.textContent = "⧉";
+      copy.title = t("copy");
+      copy.setAttribute("aria-label", t("copy"));
+
+      copy.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(item.url);
+          showStatus(t("copied"), "success");
+        } catch {
+          showStatus(t("copyError"), "error");
+        }
+      });
+
+      controls.append(open, fav, copy);
+      row.append(info, controls);
+      list.appendChild(row);
+    });
+  }
+
+  function toggleFavourite(item) {
+    const exists = favourites.some(f => f.url === item.url);
+
+    if (exists) {
+      favourites = favourites.filter(f => f.url !== item.url);
+    } else {
+      favourites = [item, ...favourites].slice(0, 30);
+    }
+
+    saveStorage();
+    renderHistory();
+  }
+
+  $("#showAllBtn").addEventListener("click", () => {
+    showingFavourites = false;
+    renderHistory();
+  });
+
+  $("#showFavBtn").addEventListener("click", () => {
+    showingFavourites = true;
+    renderHistory();
+  });
+
+  $("#clearHistoryBtn").addEventListener("click", () => {
+    if (!confirm(t("clearConfirm"))) return;
+
+    if (showingFavourites) {
+      favourites = [];
+    } else {
+      history = [];
+    }
+
+    saveStorage();
+    renderHistory();
+    showStatus(t("removed"), "success");
+  });
+
+  $("#deleteDataBtn").addEventListener("click", () => {
+    if (!confirm(t("deleteConfirm"))) return;
+
+    history = [];
+    favourites = [];
+
+    try {
+      localStorage.removeItem("zuvnelo_history");
+      localStorage.removeItem("zuvnelo_favourites");
+    } catch {}
+
+    renderHistory();
+    showStatus(t("deleted"), "success");
+  });
+
+  $("#privacyBtn").addEventListener("click", () => {
+    alert(t("privacy"));
+  });
+
+  $("#themeBtn").addEventListener("click", () => {
+    document.body.classList.toggle("light");
+
+    const light = document.body.classList.contains("light");
+
+    $("#themeBtn").textContent = light ? "🌙" : "☀️";
+
+    try {
+      localStorage.setItem("zuvnelo_theme", light ? "light" : "dark");
+    } catch {}
+  });
+
+  $("#languageBtn").addEventListener("click", () => {
+    currentLanguage = currentLanguage === "en" ? "hi" : "en";
+
+    document.documentElement.lang = currentLanguage;
+
+    $("#languageBtn").textContent =
+      currentLanguage === "en" ? "हिन्दी" : "English";
+
+    $$("[data-en][data-hi]").forEach((element) => {
+      element.textContent = element.dataset[currentLanguage];
+    });
+
+    $("#mediaUrl").placeholder = currentLanguage === "hi"
+      ? currentPlatform + " का लिंक डालें..."
+      : "Paste " + currentPlatform + " link...";
+
+    renderHistory();
+  });
+
+  $("#year").textContent = new Date().getFullYear();
+
   try {
-    input.value = await navigator.clipboard.readText();
-    input.focus();
-  } catch {
-    input.focus();
-    showStatus("Clipboard access isn't available. Please paste your link manually.");
-  }
-});
+    if (localStorage.getItem("zuvnelo_theme") === "light") {
+      document.body.classList.add("light");
+      $("#themeBtn").textContent = "🌙";
+    }
+  } catch {}
 
-document.getElementById("linkForm").addEventListener("submit", event => {
-  event.preventDefault();
-
-  actions.style.display = "none";
-
-  const value = input.value.trim();
-  let parsed;
-
-  try {
-    parsed = new URL(value);
-  } catch {
-    showStatus("Please enter a valid link beginning with https://");
-    return;
-  }
-
-  if (!["https:", "http:"].includes(parsed.protocol)) {
-    showStatus("Please use a valid web link.");
-    return;
-  }
-
-  const platform = getPlatform(value);
-
-  if (!platform) {
-    showStatus("This platform isn't in our current list.");
-    return;
-  }
-
-  showStatus(
-    platform.name + " link recognized! Actual video/audio downloading " +
-    "is not connected yet. Please use an authorized source."
-  );
-});
-
-function showStatus(message) {
-  statusBox.textContent = message;
-  statusBox.style.display = "block";
-}
-
-function showDemoMessage() {
-  showStatus(
-    "The download service is not connected yet. " +
-    "This button is a design preview, not an actual download."
-  );
-}
+  renderHistory();
+})();
 </script>
 
 </body>
